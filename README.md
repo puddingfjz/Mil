@@ -1,4 +1,6 @@
-Implementation of Mil.
+Implementation of Mil, which is built on top of vLLM.
+
+To run Mil, please first install vLLM (using the source code in this repo).
 
 The core of Mil is in the ``benchmarks'' folder.
 
