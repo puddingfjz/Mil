@@ -16,7 +16,6 @@ Mil 用于调度由多个 LLM 组成的应用。本仓库提供调度与运行�
 [论文](https://github.com/puddingfjz/Mil/blob/main/technical_report/technical_report.pdf)
 · [DOI](https://doi.org/10.14778/3819518.3819522)
 · [海报 PDF](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pdf)
-· [可编辑海报（PowerPoint）](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pptx)
 
 论文与海报托管在 `main` 分支，不随仅含源码与运行输入的发布包分发。
 下方提供[海报预览](#poster)。
@@ -80,8 +79,7 @@ GPU 执行还需要对应的原生扩展。安装步骤见 [Mil 环境说明](ar
   </a>
 </p>
 
-点击海报可打开完整分辨率的 PDF，也可
-[下载可编辑的 PowerPoint](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pptx)。
+点击海报可打开完整分辨率的 PDF。
 
 <a id="upstream-attribution-and-license"></a>
 

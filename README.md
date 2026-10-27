@@ -13,7 +13,6 @@ inputs, resource-generation tools and plotting tools.
 [Paper](https://github.com/puddingfjz/Mil/blob/main/technical_report/technical_report.pdf)
 · [DOI](https://doi.org/10.14778/3819518.3819522)
 · [Poster PDF](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pdf)
-· [Editable poster (PowerPoint)](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pptx)
 
 Publication materials are hosted on the `main` branch and are not bundled with
 the source-only release. A [poster preview](#poster) is available below.
@@ -74,8 +73,7 @@ native extensions. Follow the [Mil environment instructions](artifact/env/README
   </a>
 </p>
 
-Click the poster to open the full-resolution PDF, or
-[download the editable PowerPoint](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pptx).
+Click the poster to open the full-resolution PDF.
 
 ## Upstream attribution and license
 
