@@ -1,0 +1,4 @@
+schema_version: 1
+application: llm_blender
+parameters: {reqnum: 1000, max_token_num: 4096, outlen_known: true}
+known_output_lengths: benchmarks/test_end2end_schedule/outlen_files/test_0123-llm-blender_maxlen_4096_1000_ind0.json

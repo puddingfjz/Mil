@@ -1,0 +1,31 @@
+schema_version: 1
+name: scalability
+description: Mixed-workload model-count scalability reconstructed from final plot and launch code.
+provisional: true
+execution_ready: true
+validation_pending:
+  - Raw-log provenance, historical repetition membership, and the compiled GPU runtime still need validation.
+hardware: a100_80gb_8gpu
+execution_protocol: camera_ready_reconstruction_v1
+task_timeout_seconds: null
+defaults:
+  seed: 0
+  ratio_seed: 0
+  ratio_set: 1
+  max_group_seq_num: 1
+  top_k: 20
+  similar_threshold: 0.2
+  test_id: 0
+workloads:
+  - id: mixed_model_replication
+    test_case: mixed
+    methods: [mil, max, min, min_r, saturn_star, light_rule, light_rule_star, hybridflow, hybridflow_star]
+    matrix:
+      reqnum: [200]
+      max_token_num: [900]
+      evaluator_num: [4]
+      summarize_model: [lmsys/vicuna-13b-v1.5]
+      evaluator_model: [meta-llama/Llama-2-70b-chat-hf]
+      reqnum_mixed_blender: [5000]
+      max_token_num_mixed_blender: [256]
+      model_replicate_num: [1, 2, 4]

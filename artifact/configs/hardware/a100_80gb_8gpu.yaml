@@ -1,0 +1,47 @@
+schema_version: 1
+name: a100_80gb_8gpu
+description: Provisional profile for the original 8 x A100 80GB evaluation host.
+provisional: true
+gpu:
+  expected_name: A100-80G
+  name_match_regex: (?i)A100.*80(?:GB|G)
+  count: 8
+  memory_bytes: 85899345920
+  visible_devices:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  fully_connected_gpu_unit: 2
+software:
+  expected_cuda: '12.1'
+  minimum_python: '3.9'
+storage:
+  bootstrap_overhead_ratio: 0.05
+  roots:
+    repository:
+      minimum_capacity_bytes: 4294967296
+      minimum_runtime_free_bytes: 2147483648
+    data:
+      minimum_capacity_bytes: 536870912
+      minimum_runtime_free_bytes: 268435456
+    models:
+      minimum_capacity_bytes: 1099511627776
+      minimum_runtime_free_bytes: 10737418240
+    results:
+      minimum_capacity_bytes: 2147483648
+      minimum_runtime_free_bytes: 2147483648
+      estimated_bytes_per_task: 400000000
+legacy:
+  machine_name: zxcpu
+  cost_profile: a100_80gb_zxcpu
+notes:
+- GPU topology must be compared with the paper host before this profile is frozen.
+- The legacy machine_name selects hard-coded cost data and is not a portable host
+  identifier.
+- Storage thresholds are planning estimates; check free space and expected output
+  volume on the target host.

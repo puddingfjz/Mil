@@ -1,0 +1,27 @@
+schema_version: 1
+name: reference
+description: Five repetitions of the only checksum-backed multi-run legacy baseline.
+provisional: true
+execution_ready: true
+validation_pending:
+  - The vLLM extension must be rebuilt at the Artifact commit.
+  - GPU driver access and the full doctor preflight must pass.
+hardware: a100_80gb_8gpu
+execution_protocol: camera_ready_reconstruction_v1
+task_timeout_seconds: null
+defaults:
+  seed: 0
+  ratio_seed: 0
+  ratio_set: 1
+  max_group_seq_num: 1
+  top_k: 20
+  similar_threshold: 0.2
+  test_id: 0
+workloads:
+  - id: llm_blender_reference
+    test_case: general
+    methods: [mil]
+    matrix:
+      reqnum: [5000]
+      max_token_num: [256]
+      repeat: [1, 2, 3, 4, 5]

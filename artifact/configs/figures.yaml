@@ -1,0 +1,298 @@
+schema_version: 1
+status: configured
+paper_catalog: paper_experiments.yaml
+paper_result_entry: artifact.mil_artifact.paper_results
+extension_figures:
+- llm_blender_512
+- ablation_router_and_mixed
+- legacy_reference_point
+- legacy_reference_idle_ratio
+method_order:
+- mil
+- max
+- min
+- min_r
+- saturn_star
+- light_rule
+- light_rule_star
+- hybridflow
+- hybridflow_star
+metrics:
+  lower_bar: real_running_time_seconds
+  stacked_total: total_time_seconds
+  note: Total is execution plus inclusive search time; preparation is already a subset
+    of search. See docs/timing_convention.md.
+figures:
+  router_unknown_output_length:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: router
+    fixed:
+      reqnum: 10000
+      max_token_num: 4096
+      specify_outlen: false
+    x:
+      parameter: router_replicate_num
+      values:
+      - 1
+      - 2
+      - 3
+      - 4
+    output: router_unknown_output_length.png
+    status: configured
+  router_known_output_length:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: router
+    fixed:
+      reqnum: 10000
+      max_token_num: 4096
+      specify_outlen: true
+    x:
+      parameter: router_replicate_num
+      values:
+      - 1
+      - 2
+      - 3
+      - 4
+    output: router_known_output_length.png
+    status: configured
+  llm_blender_256:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: llm_blender
+    fixed:
+      max_token_num: 256
+    x:
+      parameter: reqnum
+      values:
+      - 1000
+      - 2000
+      - 5000
+      - 10000
+    output: llm_blender_256.png
+    status: configured
+  llm_blender_512:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: llm_blender
+    fixed:
+      max_token_num: 512
+    x:
+      parameter: reqnum
+      values:
+      - 1000
+      - 2000
+      - 5000
+      - 10000
+    output: llm_blender_512.png
+    status: configured
+  chain_summary_requests:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: chain_summary
+    method_order:
+    - mil_chain_summary
+    - max
+    - min
+    - min_r
+    - saturn_star
+    - light_rule
+    - light_rule_star
+    - hybridflow
+    - hybridflow_star
+    fixed:
+      evaluator_num: 4
+      max_token_num: 900
+    x:
+      parameter: reqnum
+      values:
+      - 100
+      - 200
+      - 300
+      - 400
+      - 500
+    output: chain_summary_requests.png
+    status: configured
+  chain_summary_evaluators:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: chain_summary
+    method_order:
+    - mil_chain_summary
+    - max
+    - min
+    - min_r
+    - saturn_star
+    - light_rule
+    - light_rule_star
+    - hybridflow
+    - hybridflow_star
+    fixed:
+      reqnum: 300
+      max_token_num: 900
+    x:
+      parameter: evaluator_num
+      values:
+      - 2
+      - 4
+      - 8
+    output: chain_summary_evaluators.png
+    status: configured
+  chain_summary_output_length:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: chain_summary
+    method_order:
+    - mil_chain_summary
+    - max
+    - min
+    - min_r
+    - saturn_star
+    - light_rule
+    - light_rule_star
+    - hybridflow
+    - hybridflow_star
+    fixed:
+      reqnum: 400
+      evaluator_num: 4
+    x:
+      parameter: max_token_num
+      values:
+      - 100
+      - 500
+      - 900
+    output: chain_summary_output_length.png
+    status: configured
+  mixed_summary_requests:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: mixed
+    fixed:
+      evaluator_num: 4
+      max_token_num: 900
+      reqnum_mixed_blender: 5000
+      max_token_num_mixed_blender: 256
+    x:
+      parameter: reqnum
+      values:
+      - 100
+      - 200
+      - 300
+      - 400
+      - 500
+    output: mixed_summary_requests.png
+    status: configured
+  ablation_router_and_mixed:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    method_order:
+    - mil_random_no_preemption
+    - mil_no_preemption
+    - mil
+    - mil_known_output_length
+    - min_random_no_preemption
+    - min_no_preemption
+    - min
+    - min_known_output_length
+    x_parameter: paper_setting
+    coordinates:
+    - value: router
+      label: LLM Routing
+      workload_id: router_paper_ablation
+      fixed:
+        reqnum: 10000
+        router_replicate_num: 4
+        max_token_num: 4096
+        specify_outlen: false
+    - value: mixed
+      label: Mixed
+      workload_id: mixed_paper_ablation
+      fixed:
+        reqnum: 500
+        evaluator_num: 4
+        max_token_num: 900
+        reqnum_mixed_blender: 5000
+        max_token_num_mixed_blender: 256
+        model_replicate_num: 1
+    output: ablation_router_and_mixed.png
+    status: configured
+  mixed_model_scalability:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: mixed_model_replication
+    fixed:
+      reqnum: 200
+      evaluator_num: 4
+      max_token_num: 900
+      reqnum_mixed_blender: 5000
+      max_token_num_mixed_blender: 256
+    x:
+      parameter: model_replicate_num
+      values:
+      - 1
+      - 2
+      - 4
+      labels:
+      - 2
+      - 4
+      - 8
+    aggregation:
+      default: median
+      methods:
+        min_r: mean
+    error_bars:
+      methods:
+      - min_r
+      metric: total
+      range: min_max
+      color: crimson
+    output: mixed_model_scalability.png
+    status: configured
+  legacy_reference_point:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: llm_blender
+    method_order:
+    - mil
+    fixed:
+      max_token_num: 256
+    x:
+      parameter: reqnum
+      values:
+      - 5000
+    output: legacy_reference_point.png
+    status: configured
+  legacy_reference_idle_ratio:
+    source: artifact/mil_artifact/plot.py
+    source_checksum_sha256: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+    workload_id: llm_blender
+    method_order:
+    - mil
+    fixed:
+      max_token_num: 256
+    x:
+      parameter: reqnum
+      values:
+      - 5000
+    single_metric: gpu_idle_ratio
+    y_label: Fraction of GPU capacity idle
+    error_bars:
+      methods:
+      - mil
+      metric: total
+      range: min_max
+      color: crimson
+    output: legacy_reference_idle_ratio.png
+    status: configured
+notes:
+- Plots read measurements explicitly supplied by the user; no prior experiment results
+  are bundled.
+- HybridFlow uses the retained pre-9011731 function; HybridFlow* uses the Round2 no-colocate
+  implementation.
+- Scalability model_replicate_num multiplies the two base applications; 1/2/4 is displayed
+  as 2/4/8 applications.
+- The legacy ablation combines one Router point and one Mixed point; it is an extension,
+  not paper Table 2.
+plot_entry: artifact.mil_artifact.plot_entry
+plot_mode: results

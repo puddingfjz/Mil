@@ -1,0 +1,22 @@
+schema_version: 1
+name: simulated_resource_pipeline
+description: Small synthetic CPU fixture; all timings and lengths are invented test data, not paper measurements.
+cost:
+  entries:
+    - model: synthetic/toy-model
+      exec_plan: [1, 0.9, 2, 0]
+      model_config: [2, 1]
+      flops_coefficient: 1000000000000
+      prepare_seconds: 0.5
+      profile_num: 2
+      skip_records: 2
+      log: artifact/tests/fixtures/resources/cost.txt
+output_lengths:
+  entries:
+    - model: synthetic/toy-model
+      max_model_len: 8
+      expected_requests: 4
+      num_prompts: 4
+      temperature: 1.0
+      tensor_parallel_size: 1
+      log: artifact/tests/fixtures/resources/output_lengths.txt

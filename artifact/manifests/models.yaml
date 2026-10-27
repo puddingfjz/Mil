@@ -1,0 +1,275 @@
+schema_version: 1
+status: revisions_integrity_and_access_captured_pending_camera_ready_confirmation
+integrity_policy:
+  id: hf-snapshot-light-v1
+  config_sha256: SHA-256 of config.json payload.
+  weight_layout_sha256: >-
+    SHA-256 of sorted UTF-8 lines '<size_bytes>  <relative_posix_path>\n'
+    for files ending in .bin, .pt, .pth, or .safetensors.
+  limitation: >-
+    The layout digest detects missing or size-changed local shards without
+    rereading hundreds of gigabytes. It is not a weight-content checksum;
+    immutable Hugging Face revision IDs identify upstream content.
+distribution_policy:
+  model_weights_in_artifact: false
+  evaluator_action: Fetch each model from its upstream repository at the exact revision after satisfying its terms.
+  automatic_download: Requires explicit access-terms acknowledgement and refuses entries whose license status is unresolved.
+  legal_note: This manifest records source evidence and is not legal advice.
+models:
+  - id: meta-llama/Llama-2-70b-chat-hf
+    revision: e9149a12809580e8602995856f8098ce973d1080
+    workloads: [router, chain_summary, mixed]
+    integrity:
+      file_count: 44
+      size_bytes: 275910787067
+      weight_file_count: 30
+      weight_size_bytes: 275907012576
+      config_sha256: 45acffc026ba4eb782669e7315db07a2f856be1bcea7ebf7b1eda4ad24cbb49d
+      weight_layout_sha256: a44cb4b334240f7bac675352c43a181fb815702cb18e838145365ce2d7e7f90e
+    license:
+      declared_id: llama2
+      status: confirmed_from_pinned_snapshot
+      evidence:
+        README.md: 35e22712ddf1d950d66eaf75ec79cfb325e365fa97f72aedbf4aaaf36c139bc9
+        LICENSE.txt: 8c17c2ebb0ea011be9981cc3922db8ca8fa61e828c5d3f44cb6ae342bf80460b
+        USE_POLICY.md: 7c23fb36d80141c4ab8cdbb61ee4790102ebd2bf7aeff414453177d4f2110e5d
+    access_requirement: huggingface_gated_meta_contact_and_license_acceptance
+
+  - id: mistralai/Mixtral-8x7B-Instruct-v0.1
+    revision: eba92302a2861cdc0098cc54bc9f17cb2c47eb61
+    workloads: [router]
+    integrity:
+      file_count: 36
+      size_bytes: 190483875117
+      weight_file_count: 27
+      weight_size_bytes: 190481480224
+      config_sha256: 9d56d04b36d0fd12ff54ae4c5bac769cc176e254e64ff71144614b6318b40793
+      weight_layout_sha256: 916b71a022078929af543f9822e367a14184779274705426661f9b68083e3366
+    license:
+      declared_id: apache-2.0
+      status: confirmed_from_pinned_snapshot
+      evidence:
+        README.md: b18a029ab6963341c72c7018efd61a600f794efd5945a2bf0d80960bfd624ff0
+    access_requirement: pinned_card_contains_huggingface_gated_contact_metadata
+
+  - id: WizardLMTeam/WizardLM-13B-V1.2
+    revision: cf5f40382559f19e13874e45b39575171ca46ef8
+    workloads: [router]
+    integrity:
+      file_count: 10
+      size_bytes: 26032401801
+      weight_file_count: 1
+      weight_size_bytes: 26031865519
+      config_sha256: 7bb458ab942be5ba7d13a53dfe37a0eb8240a7f98f0595afba3eda7e06b174fa
+      weight_layout_sha256: 079331638e5ccf8d34210c4803748827498159d1397af758add7d754c08f2677
+    license:
+      declared_id: llama2
+      status: confirmed_from_pinned_snapshot
+      evidence:
+        README.md: ef1592d77c710563b23eab103f5e868514ae7ea5fbf236a714971ce75eaf7624
+      caveat: The card identifies this checkpoint as governed by the Llama 2 license.
+    access_requirement: satisfy_upstream_and_llama2_terms
+
+  - id: meta-llama/CodeLlama-34b-Instruct-hf
+    revision: edf62e7a0389eafc71b8fb1da96008817c0c9edb
+    workloads: [router]
+    integrity:
+      file_count: 24
+      size_bytes: 135240663655
+      weight_file_count: 14
+      weight_size_bytes: 135238224527
+      config_sha256: e1724f8eda28bdcbe4fe1df98f4439e6b90c181de9d04e9d672438f92fe84213
+      weight_layout_sha256: 76b9b1c1835d92dec52b1136cec384be3deefb28d65d82d9fd77feb737576acc
+    license:
+      declared_id: llama2
+      status: confirmed_from_pinned_snapshot
+      evidence:
+        README.md: 73d118affb59687b9d015a46c5f8630247451e5a16e284a8d8f7505f675bb0dd
+      caveat: The complete license prompt is embedded in the pinned model card.
+    access_requirement: huggingface_gated_meta_contact_and_license_acceptance
+
+  - id: mistralai/Mistral-7B-Instruct-v0.2
+    revision: 63a8b081895390a26e140280378bc85ec8bce07a
+    workloads: [router]
+    integrity:
+      file_count: 16
+      size_bytes: 29493697775
+      weight_file_count: 6
+      weight_size_bytes: 29491349786
+      config_sha256: 2e97da1b1d2b7e7669f0991c186904538c27d4ea56c4fc74e89215e2b2013922
+      weight_layout_sha256: 1c08a2ef260dac0764ce28c5ef40821191b145b843c3d8f14878ce4bd17a9bf3
+    license:
+      declared_id: apache-2.0
+      status: confirmed_from_pinned_snapshot
+      evidence:
+        README.md: aa431f0f615eae0a34b895020db5ad43ae287b460d1300b5ee225a3f50ff2343
+    access_requirement: pinned_card_contains_huggingface_gated_contact_metadata
+
+  - id: lmsys/vicuna-13b-v1.5
+    revision: c8327bf999adbd2efe2e75f6509fa01436100dc2
+    workloads: [llm_blender, chain_summary, mixed]
+    integrity:
+      file_count: 11
+      size_bytes: 26032415747
+      weight_file_count: 3
+      weight_size_bytes: 26031877079
+      config_sha256: ff01ad505c4699a6be3bfc9365dce9e4205d35cb3a2a1df10a79ceb52ab5d2ed
+      weight_layout_sha256: 48111c5106ad26809ca492e1655ae8b122e03a07fc4892d7517806f05d023143
+    license:
+      declared_id: llama2
+      status: confirmed_from_pinned_snapshot
+      evidence:
+        README.md: 85ad8c42579b1f14c60ae46ec324f42a4da748d23b47dab837c7b8e5636abd85
+      caveat: The card describes research as the primary intended use; Llama 2 terms apply.
+    access_requirement: satisfy_upstream_and_llama2_terms
+
+  - id: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    revision: 626b8c140cfdedb119dfb78c626cd772283dee33
+    workloads: [llm_blender, mixed]
+    integrity:
+      file_count: 12
+      size_bytes: 23837318241
+      weight_file_count: 3
+      weight_size_bytes: 23835137461
+      config_sha256: c9e0a500381e196880096d2da4d515b6a9273125a93f27c3460f964250495596
+      weight_layout_sha256: f5d3a223edd0d6e0fffdf7ae39eeb0caedf647a9eeb54702cfa3f0d2000b6e99
+    license:
+      declared_id: apache-2.0
+      status: confirmed_from_pinned_snapshot
+      evidence:
+        README.md: 906ceeed8d0c2a2d707e83b62056407fe7f88686b9208c54c492df851a7c52c0
+        LICENSE: c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4
+    access_requirement: satisfy_upstream_terms
+
+  - id: chavinlo/alpaca-13b
+    revision: 07dd28d9e36dad7a8d9fb4eb371922af6d7568ec
+    revision_evidence: git:f75c964a7e95c8a7365ec069b0799225f93393be:benchmarks/README.md
+    local_refs_main_at_capture: 64da1119aa102244528858b1ebd578edb83c8508
+    workloads: [llm_blender, mixed]
+    integrity:
+      file_count: 17
+      size_bytes: 52064480662
+      weight_file_count: 7
+      weight_size_bytes: 52063650335
+      config_sha256: 32686f17a4602a28fb6a32425f9c89af9fd689c4f79f602c96a6710b528d1b42
+      weight_layout_sha256: 156d76f87c578325036f6574b9321304f5693c40003e60e3d0ade9e076d15995
+    license:
+      declared_id: unknown
+      status: unresolved
+      evidence:
+        README.md: 232f0455c87a1bd0f75dc0454dab63db271ecec40e6f77ce5526944297acec37
+      caveat: The 28-byte pinned card declares no license; LLaMA-derived weight and data terms require review.
+    access_requirement: manual_legal_review_before_fetch_or_use
+
+  - id: project-baize/baize-v2-13b
+    revision: a3c4bbccca8b650700a49a225582c17bb49b446b
+    workloads: [llm_blender, mixed]
+    integrity:
+      file_count: 11
+      size_bytes: 39047857155
+      weight_file_count: 3
+      weight_size_bytes: 39047318745
+      config_sha256: bc14d159151c9953af9c44c80b418a78ee36d2e354165b43124ba500804f10ce
+      weight_layout_sha256: c146ec86501d5f11c361a4b3bc64df01035115d2097a49da0051e92bb2b6435e
+    license:
+      declared_id: cc-by-nc-4.0
+      status: confirmed_with_underlying_terms_caveat
+      evidence:
+        README.md: b691ecd40cbcc5a96ee49f631722418c1967faa1e879e7f2d8262a16a08fc208
+      caveat: The card declares CC-BY-NC-4.0 and says the checkpoint is merged with LLaMA; underlying terms also require review.
+    access_requirement: noncommercial_and_underlying_llama_terms_review
+
+  - id: TheBloke/koala-13B-HF
+    revision: b20f96a0171ce4c0fa27d6048215ebe710521587
+    workloads: [llm_blender, mixed]
+    integrity:
+      file_count: 11
+      size_bytes: 26032418817
+      weight_file_count: 3
+      weight_size_bytes: 26031877079
+      config_sha256: 089d9a90103fb04a8f1e961e0319f0ab12e059b7f65b8ca89cd27ea82b48374a
+      weight_layout_sha256: 48111c5106ad26809ca492e1655ae8b122e03a07fc4892d7517806f05d023143
+    license:
+      declared_id: other
+      status: confirmed_research_only_composite_terms
+      evidence:
+        README.md: 429018bef0038316001a0961f67429ffb554b0fe71b00977546a3e98be7a86d7
+      caveat: The card limits use to academic research and cites LLaMA, OpenAI-data, and ShareGPT terms; commercial use is prohibited.
+    access_requirement: academic_research_only_and_composite_terms_review
+
+  - id: databricks/dolly-v2-12b
+    revision: 19308160448536e378e3db21a73a751579ee7fdd
+    workloads: [llm_blender, mixed]
+    integrity:
+      file_count: 8
+      size_bytes: 23837102912
+      weight_file_count: 1
+      weight_size_bytes: 23834965761
+      config_sha256: a2326f305a2c62bbff72bc230547884a77bde4e03af501bcfbfdd07ceeba68cf
+      weight_layout_sha256: 7765bb5337cce1302744d0db5318a07a3d89a86467d59dba7d982ca7c2bcacd9
+    license:
+      declared_id: mit
+      status: confirmed_from_pinned_snapshot
+      evidence:
+        README.md: 5273e428e8b5254a36807cca6278441dbcd9bafcb81176b779e6595f61463e7f
+      caveat: The card separately identifies its instruction dataset as CC-BY-SA.
+    access_requirement: satisfy_upstream_terms
+
+  - id: mosaicml/mpt-7b-chat
+    revision: 1fe2374291e730f7c58ceb1bf49960082371b551
+    workloads: [llm_blender, mixed]
+    integrity:
+      file_count: 26
+      size_bytes: 13300945448
+      weight_file_count: 2
+      weight_size_bytes: 13298639462
+      config_sha256: 784ee76f2e25855375d274caa607f7d98ee64d67d93335c9c92397be1b8c0b54
+      weight_layout_sha256: 8bd59c7c652622a7dcae76fc44aa81853d50a0fc0de0b3e7f1627de8689a466b
+    license:
+      declared_id: cc-by-nc-sa-4.0
+      status: confirmed_noncommercial
+      evidence:
+        README.md: de26239935599c233df4a1147b1f4fc632eb79930510dad084a12b9265951333
+        LICENSE: 1349a4b6148492b44f629e64eed676612e234fe9a839e4f3b277c1482c8849f1
+    access_requirement: noncommercial_use_only
+
+  - id: THUDM/chatglm3-6b
+    revision: e9e0406d062cdb887444fe5bd546833920abd4ac
+    workloads: [llm_blender, mixed]
+    integrity:
+      file_count: 27
+      size_bytes: 24975604305
+      weight_file_count: 14
+      weight_size_bytes: 24974439630
+      config_sha256: 415b51f6043ef388860b093fad9c52f4898c426af733871f45e2e0c8b6e1d61e
+      weight_layout_sha256: 7a34a6d9207d9c70d03cc7a49d2e8cf04fd670615b4c0ac596f133b6ff5136db
+    license:
+      declared_id: custom-chatglm3-model-license
+      status: confirmed_custom_terms
+      evidence:
+        README.md: 3f0d16b0220040824200f59e2b5696cf70922feaff443f19592de352e2d5b315
+        MODEL_LICENSE: 3c3f9c0b52ba10f85c522f9455e9bd886d4e80f1ea8524afd87080c88a9c9575
+      caveat: Academic use is allowed; commercial use requires registration under the pinned custom license.
+    access_requirement: accept_custom_terms_and_register_for_commercial_use
+
+  - id: stabilityai/stablelm-tuned-alpha-7b
+    revision: 25071b093c15c0d1cb2b2876c6deb621b764fcf5
+    workloads: [llm_blender, mixed]
+    integrity:
+      file_count: 12
+      size_bytes: 31745689798
+      weight_file_count: 4
+      weight_size_bytes: 31743544587
+      config_sha256: eef348e7b042121c58a05d50be6b2e0a3e67906cc1eb55b4edfa8d6fefedd756
+      weight_layout_sha256: d5aa9ca1234a22029d1eb69e52eaf6a7295a8d8d324cadc3bab55201db525fe0
+    license:
+      declared_id: cc-by-nc-sa-4.0
+      status: confirmed_noncommercial
+      evidence:
+        README.md: 843b4fc915c1717fbc9d82f367b78b98ad842f922327eba6d02e69580f019328
+    access_requirement: noncommercial_use_only
+notes:
+  - LLM-Blender revisions are cross-checked against the snapshot list in git:f75c964a7e95c8a7365ec069b0799225f93393be:benchmarks/README.md.
+  - Router-only revisions were resolved from local Hugging Face refs/main on 2026-09-06 and still require camera-ready confirmation.
+  - Alpaca's historical experiment revision differs from the current local refs/main; the historical revision is retained and locally available.
+  - Access requirements describe evidence in each pinned snapshot; upstream hosting gates can change and must be checked before download.

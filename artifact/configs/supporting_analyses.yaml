@@ -1,0 +1,24 @@
+schema_version: 1
+distribution_records: []
+distribution_requirements:
+  models:
+  - vicuna-13b-v1.5
+  - chatglm3-6b
+  - WizardLM-13B-V1.2
+  datasets:
+  - no_robot
+  - dolly
+  - natural_questions
+  - tldr
+  - gsm8k
+  - humaneval
+  - mbpp
+  - ShareGPT
+  note: Supply numeric request records with model/dataset/input_length/output_length/category.
+latency_profiles: []
+trace_comparison:
+  real_trace: null
+  simulated_trace: null
+  required_model: lmsys/vicuna-13b-v1.5
+  required_dataset: ShareGPT
+  required_requests: 1000

@@ -1,0 +1,5 @@
+schema_version: 1
+name: paper
+paper_catalog: ../paper_experiments.yaml
+# Compile into the existing runner's TaskSpec format; execution remains explicit.
+# Historical main/ablation/full profiles remain available as extensions.

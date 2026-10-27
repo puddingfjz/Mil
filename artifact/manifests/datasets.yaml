@@ -1,0 +1,179 @@
+schema_version: 1
+status: provisional
+datasets:
+  - id: router_not_multiple_choice
+    path: ${MIL_REPO_ROOT}/benchmarks/router_bench_not_multiple_choice_question_dataset_with_responses.json
+    checksum_kind: file
+    size_bytes: 11777679
+    record_count: 6856
+    checksum_sha256: dd9b11a1a444e7f0b581d749c8fe3f86823410a70393c2b2f1f614f4648f3aca
+    required_for: [router]
+    provenance:
+      source_status: verified_with_documented_tie_override
+      upstream_url: https://huggingface.co/datasets/withmartian/routerbench
+      upstream_revision: 784021482c3f320c6619ed4b3bb3b41a21424fcb
+      source_file: routerbench_5shot.pkl
+      source_size_bytes: 171091324
+      source_lfs_oid_sha256: fbd7d3d16fba2759a18fa0ad44409d3e0e92ba80d03d90827eed1a6d084c9ffe
+      official_code_url: https://github.com/withmartian/routerbench
+      official_code_revision: cc67d1008bd8f3cf1e8040cc3ba4034d31b93c0c
+      official_code_license_spdx: MIT
+      source_model_map:
+        mistralai/mistral-7b-chat: mistralai/Mistral-7B-Instruct-v0.2
+        meta/code-llama-instruct-34b-chat: meta-llama/CodeLlama-34b-Instruct-hf
+        mistralai/mixtral-8x7b-chat: mistralai/Mixtral-8x7B-Instruct-v0.1
+        WizardLM/WizardLM-13B-V1.2: WizardLMTeam/WizardLM-13B-V1.2
+        meta/llama-2-70b-chat: meta-llama/Llama-2-70b-chat-hf
+      preprocessing: >-
+        Parse prompt and selected model response list literals, join their
+        string elements with LF, retain the five locally supported route
+        targets, group by mapped local model ID, and partition multiple-choice
+        from non-multiple-choice records.
+      local_base_creation_commit: 1bc223457472db992afd1fb150f2194d3854fb7c
+      local_response_creation_commit: 141b34e93dd555aa49ff49dbf5bc85f483832e4b
+      verification: >-
+        The two local RouterBench files contain 30,379 records in total. Of
+        these, 30,378 match the source row selected by
+        oracle_model_to_route_to. The remaining MBPP tie has score 1.0 for
+        WizardLM, Mixtral, and CodeLlama; the local file retains the WizardLM
+        response while the upstream oracle field names Mixtral.
+      license_status: upstream_dataset_card_does_not_declare_a_data_license
+      redistribution_status: review_required
+  - id: router_multiple_choice
+    path: ${MIL_REPO_ROOT}/benchmarks/router_bench_multiple_choice_question_dataset_with_responses.json
+    checksum_kind: file
+    size_bytes: 78562864
+    record_count: 23523
+    checksum_sha256: 436df9df40f8baac32a5bf08c0fed835d203d0b29ba48f148a9e4e105c003e4d
+    required_for: [router]
+    provenance:
+      source_status: exact_source_transform_match
+      upstream_url: https://huggingface.co/datasets/withmartian/routerbench
+      upstream_revision: 784021482c3f320c6619ed4b3bb3b41a21424fcb
+      source_file: routerbench_5shot.pkl
+      source_size_bytes: 171091324
+      source_lfs_oid_sha256: fbd7d3d16fba2759a18fa0ad44409d3e0e92ba80d03d90827eed1a6d084c9ffe
+      official_code_url: https://github.com/withmartian/routerbench
+      official_code_revision: cc67d1008bd8f3cf1e8040cc3ba4034d31b93c0c
+      official_code_license_spdx: MIT
+      source_model_map:
+        mistralai/mistral-7b-chat: mistralai/Mistral-7B-Instruct-v0.2
+        meta/code-llama-instruct-34b-chat: meta-llama/CodeLlama-34b-Instruct-hf
+        mistralai/mixtral-8x7b-chat: mistralai/Mixtral-8x7B-Instruct-v0.1
+        WizardLM/WizardLM-13B-V1.2: WizardLMTeam/WizardLM-13B-V1.2
+        meta/llama-2-70b-chat: meta-llama/Llama-2-70b-chat-hf
+      preprocessing: >-
+        Parse prompt and selected model response list literals, join their
+        string elements with LF, retain the five locally supported route
+        targets, group by mapped local model ID, and partition multiple-choice
+        from non-multiple-choice records.
+      local_base_creation_commit: 1bc223457472db992afd1fb150f2194d3854fb7c
+      local_response_creation_commit: 141b34e93dd555aa49ff49dbf5bc85f483832e4b
+      verification: >-
+        All 23,523 multiple-choice records match the normalized source
+        prompt/response selected by oracle_model_to_route_to exactly.
+      license_status: upstream_dataset_card_does_not_declare_a_data_license
+      redistribution_status: review_required
+  - id: mixinstruct_prepared
+    path: ${MIL_REPO_ROOT}/benchmarks/train_data_prepared.jsonl
+    checksum_kind: file
+    size_bytes: 1381767924
+    record_count: 100000
+    checksum_sha256: 9b7a070bd7b663b5f1f7f6a277efeb5711dda263059519810f3017315e721fa4
+    required_for: [llm_blender, mixed]
+    acquisition:
+      provider: huggingface_hub
+      repository_id: llm-blender/mix-instruct
+      repo_type: dataset
+      revision: c7f77a4ef0515a99d1752c6387c22366d6922da6
+      filename: train_data_prepared.jsonl
+      automatic_download: allowed
+    provenance:
+      upstream_url: https://huggingface.co/datasets/llm-blender/mix-instruct
+      upstream_revision: c7f77a4ef0515a99d1752c6387c22366d6922da6
+      source_file: train_data_prepared.jsonl
+      source_size_bytes: 1381767924
+      source_lfs_oid_sha256: 9b7a070bd7b663b5f1f7f6a277efeb5711dda263059519810f3017315e721fa4
+      source_status: exact_byte_match
+      evidence: git:f75c964a7e95c8a7365ec069b0799225f93393be:benchmarks/README.md and exact upstream LFS OID match
+      preprocessing: none; the prepared upstream file is used directly
+      license_spdx: MIT
+      license_status: declared_in_upstream_dataset_card
+      redistribution_status: license_review_complete_for_manifest_metadata
+  - id: booookscore_all_books
+    path: ${MIL_DATA_ROOT}/BooookScore/all_books_chunked_2048.pkl
+    checksum_kind: file
+    size_bytes: 55921794
+    document_count: 100
+    chunk_count: 6577
+    checksum_sha256: b7bd640eff7d2c954db9822c6a798a53b9e7d15834a17b257558ae6c1ce8001a
+    required_for: [chain_summary, mixed]
+    provenance:
+      upstream_url: https://github.com/lilakk/BooookScore
+      upstream_revision: 094bf69bc55317b728b4b2bb679c287e0176ae6c
+      revision_role: reproducing chunker revision; original private input revision is unavailable
+      source_file: all_books.pkl
+      source_status: restricted_upstream_input_not_available_for_byte_comparison
+      preprocessing_command: >-
+        python -m booookscore.chunk --chunk_size 2048 --input_path
+        all_books.pkl --output_path all_books_chunked_2048.pkl
+      preprocessing_code: booookscore/chunk.py
+      tokenizer: cl100k_base
+      upstream_tiktoken_requirement: tiktoken==0.5.2
+      preprocessing_status: command_and_code_recovered_but_private_input_unverified
+      code_license_spdx: MIT
+      dataset_access: official request form; upstream states academic labs only
+      license_status: dataset_redistribution_permission_not_established
+      redistribution_status: do_not_redistribute_without_author_permission
+  - id: booksum
+    path: ${MIL_DATA_ROOT}/BooookScore/booksum_data_chunked_2048.pkl
+    checksum_kind: file
+    size_bytes: 135948205
+    document_count: 4845
+    chunk_count: 19087
+    checksum_sha256: af4c4ae2e4d42de33a08d5ba158ea7a4d79baf2f1c36b1ee90cbd0a38551dfa2
+    required_for: [chain_summary, mixed]
+    provenance:
+      upstream_url: https://huggingface.co/datasets/kmfoda/booksum
+      upstream_revision: c62321036e5647db5767ecaff139912b554dc938
+      source_file: train.csv
+      source_size_bytes: 295181376
+      source_lfs_oid_sha256: cba85aa87c138a45f8a8fd4c4f3006ea6dbdbc9da786c36605dc37ea50c478a4
+      source_status: source_and_semantic_transform_verified
+      evidence: git:f75c964a7e95c8a7365ec069b0799225f93393be:benchmarks/README.md plus full source/content/chunk comparison
+      preprocessing: >-
+        Read train.csv, map each unique chapter_path to chapter (all duplicate
+        paths have identical chapter text), then run BooookScore chunk.py with
+        chunk_size 2048, empty-line removal, and cl100k_base token counting.
+      preprocessing_command: >-
+        python -m booookscore.chunk --chunk_size 2048 --input_path
+        booksum_data.pkl --output_path booksum_data_chunked_2048.pkl
+      booookscore_url: https://github.com/lilakk/BooookScore
+      booookscore_revision: 094bf69bc55317b728b4b2bb679c287e0176ae6c
+      upstream_tiktoken_requirement: tiktoken==0.5.2
+      preprocessing_status: >-
+        Verified all 9,600 CSV rows collapse to 4,845 unique identical-text
+        chapter paths and all 4,845 reconstructed chunk lists match the local
+        prepared object exactly.
+      license_spdx: BSD-3-Clause
+      license_status: >-
+        Declared by the upstream dataset card; its legal note also requires
+        research-only script use and responsibility for underlying data rights.
+      redistribution_status: review_underlying_text_rights_before_publication
+  - id: legacy_output_lengths
+    path: ${MIL_REPO_ROOT}/benchmarks/test_end2end_schedule/outlen_files
+    checksum_kind: tree-v1
+    size_bytes: 49034255
+    file_count: 139
+    checksum_sha256: 0b75b647d73afe4527e08f21f3b1a9ff17289b9d0e163869c68c4c40fa8978c1
+    required_for: [router, llm_blender, chain_summary, mixed]
+    provenance:
+      source: outputs generated by legacy experiments and reused as fixed-length inputs
+      preprocessing_status: legacy generation path identified; exact generating run set unresolved
+      license_status: derived-data review required
+notes:
+  - Checksums and counts were measured from the camera-ready working dataset on 2026-09-06.
+  - Upstream source verification was performed on 2026-09-06 without changing prepared inputs.
+  - Technical provenance does not by itself authorize redistribution; RouterBench data licensing, BooookScore private-data permission, and BookSum underlying-text rights remain release reviews.
+  - MIL_DATA_ROOT should point to the directory that contains BooookScore/.
+  - tree-v1 is SHA-256 over sorted lines of "<file-sha256>  <relative-posix-path>\\n".

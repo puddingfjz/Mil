@@ -1,0 +1,97 @@
+schema_version: 1
+status: provisional
+profiles:
+  a100_80gb_zxcpu:
+    gpu_name: A100-80G
+    gpu_count: 8
+    topology_checksum_sha256: null
+    generated_by_commit: de1677dcb7e2a216172aedf3262b19b106f17786
+    runtime_selector:
+      legacy_argument: --machine_name zxcpu
+      default_in_legacy_entrypoint: zxcpu
+      selected_table: ${MIL_REPO_ROOT}/benchmarks/get_my_cost_table_directly_zxcpu.py
+      import_note: search_exec_plans.py imports both serialized table modules eagerly
+    profiling:
+      entrypoint: ${MIL_REPO_ROOT}/benchmarks/construct_cost_model.py
+      command_template: CUDA_VISIBLE_DEVICES=<gpu_ids> python3 construct_cost_model.py
+        --input-len 16 --output-len 16 --model <model_id> --num-prompts 1 --enforce-eager
+        -tp <1|2|4> --trust-remote-code --temperature 1.0 -gpuratio 0.9 -wldegree
+        2 --backend vllm > <profile_log>
+      synthetic_request_seed: 0
+      max_num_seqs: 512
+      max_paddings: 512
+      piecewise_mode: disabled for weight_load_degree 2
+      acquisition_entrypoint: ${MIL_REPO_ROOT}/artifact/mil_artifact/resource_build.py
+      acquisition_config: ${MIL_REPO_ROOT}/artifact/configs/resources/local_measurements.yaml
+    table_builder:
+      entrypoint: ${MIL_REPO_ROOT}/artifact/mil_artifact/resource_build.py
+      function: build_resources
+      profile_num: 2
+      threshold_seconds: 0.001
+      sample_config:
+      - 1
+      - 1
+      - -1
+      - 0
+      serialized_output: ${MIL_REPO_ROOT}/benchmarks/get_my_cost_table_directly_zxcpu.py
+      serialized_output_last_update_commit: de1677dcb7e2a216172aedf3262b19b106f17786
+      status: Build into a new resource directory from explicit logs and metadata.
+        Frozen base entries remain identified as inherited; complete reprofiling and
+        topology certification are separate.
+    sources:
+    - id: zxcpu_serialized_table
+      role: selected_runtime_cost_table
+      path: ${MIL_REPO_ROOT}/benchmarks/get_my_cost_table_directly_zxcpu.py
+      checksum_kind: file
+      size_bytes: 5492143
+      checksum_sha256: b6ccd301bf9e8cc05be2702d6a3d54210cf7a26354e9ce46f4df854d45aaf2e6
+    - id: lccpu_serialized_table
+      role: eagerly_imported_compatibility_cost_table
+      path: ${MIL_REPO_ROOT}/benchmarks/get_my_cost_table_directly.py
+      checksum_kind: file
+      size_bytes: 12733920
+      checksum_sha256: a386db927ba0832ecf076057a974f3e6de80a3089e0cd305eb558dcdba140fb5
+    - id: table_runtime
+      role: serialized_table_loader_and_interpolator
+      path: ${MIL_REPO_ROOT}/benchmarks/my_per_iter_latency_estimator.py
+      checksum_kind: file
+      size_bytes: 39781
+      checksum_sha256: 9279f0ab9812fe98e69476ca06c6a2b53947142bfe92dd74d264045fcd48f163
+    generation_sources:
+    - id: profiler
+      role: per_iteration_latency_profiler
+      path: ${MIL_REPO_ROOT}/benchmarks/construct_cost_model.py
+      checksum_kind: file
+      size_bytes: 30359
+      checksum_sha256: fa23a178367b31c93f75653614081a2ed3c7aa4cbc42f3c44d1b491a0d440964
+    - id: resource_builder
+      role: parameterized_acquisition_and_cpu_resource_generation
+      path: ${MIL_REPO_ROOT}/artifact/mil_artifact/resource_build.py
+      checksum_kind: file
+      size_bytes: 27334
+      checksum_sha256: 6c541e52953b6f56d9ce7a23ce55cbb823fe0a85daffd006b359a9e0f5afacb5
+    - id: resource_configuration
+      role: explicit_measurement_and_generation_parameters
+      path: ${MIL_REPO_ROOT}/artifact/configs/resources/local_measurements.yaml
+      checksum_kind: file
+      size_bytes: 1906
+      checksum_sha256: f8375f2c3f2016f6803f5e2fa7cfdf60c68ad7ab43069332c5633fee20a58a08
+    notes: Required runtime and generator files are included in the explicit distribution.
+      Historical archive digests describe the original raw archives, not a required
+      current directory tree. Use the resource configurations to select individual
+      logs for rebuilding.
+    historical_archive_references:
+    - id: retained_lccpu_raw_logs
+      role: partial_historical_raw_profile_archive
+      path: ${MIL_REPO_ROOT}/benchmarks/Cost_Model_per_iter
+      checksum_kind: tree-v1
+      file_count: 65
+      size_bytes: 262857030
+      checksum_sha256: f4249491d59a1baa5c449bcf2e5254749e71c5de88eaba71d65961126b1404dd
+    - id: local_zxcpu_raw_logs
+      role: non_distributed_partial_raw_profile_archive
+      path: ${MIL_REPO_ROOT}/benchmarks/Cost_Model_per_iter_zxcpu
+      checksum_kind: tree-v1
+      file_count: 79
+      size_bytes: 14066651
+      checksum_sha256: 676483372a97e4c31fbf9014f61938d2be98db170e616f02960ad6424c94b30d

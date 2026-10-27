@@ -1,0 +1,124 @@
+schema_version: 1
+name: full
+description: Main-paper, final ablation, and model-scalability matrices in one profile.
+provisional: true
+execution_ready: true
+validation_pending:
+  - Camera-ready repetition counts, seed provenance, and failed-run/statistical selection are not recovered for every coordinate; the new Artifact execution policy is frozen separately.
+  - Camera-ready captions, complete raw-log provenance, and expected results need final confirmation.
+  - The compiled runtime and GPU execution still require validation.
+hardware: a100_80gb_8gpu
+execution_protocol: camera_ready_reconstruction_v1
+task_timeout_seconds: null
+defaults:
+  seed: 0
+  ratio_seed: 0
+  ratio_set: 1
+  max_group_seq_num: 1
+  top_k: 20
+  similar_threshold: 0.2
+  test_id: 0
+workloads:
+  - id: router
+    test_case: router
+    methods: [mil, max, min, min_r, saturn_star, light_rule, light_rule_star, hybridflow, hybridflow_star]
+    matrix:
+      reqnum: [10000]
+      router_replicate_num: [1, 2, 3, 4]
+      router_question_version: [not_multiple_choice_question]
+      max_token_num: [4096]
+      specify_outlen: [false, true]
+
+  - id: llm_blender
+    test_case: general
+    methods: [mil, max, min, min_r, saturn_star, light_rule, light_rule_star, hybridflow, hybridflow_star]
+    matrix:
+      reqnum: [1000, 2000, 5000, 10000]
+      max_token_num: [256, 512]
+
+  - id: chain_summary
+    test_case: chain-summary
+    methods: [mil_chain_summary, max, min, min_r, saturn_star, light_rule, light_rule_star, hybridflow, hybridflow_star]
+    matrix:
+      reqnum: [100, 200, 300, 400, 500]
+      max_token_num: [100, 500, 900]
+      evaluator_num: [2, 4, 8]
+      summarize_model: [lmsys/vicuna-13b-v1.5]
+      evaluator_model: [meta-llama/Llama-2-70b-chat-hf]
+
+  - id: mixed
+    test_case: mixed
+    methods: [mil, max, min, min_r, saturn_star, light_rule, light_rule_star, hybridflow, hybridflow_star]
+    matrix:
+      reqnum: [100, 200, 300, 400, 500]
+      max_token_num: [100, 500, 900]
+      evaluator_num: [2, 4, 8]
+      summarize_model: [lmsys/vicuna-13b-v1.5]
+      evaluator_model: [meta-llama/Llama-2-70b-chat-hf]
+      reqnum_mixed_blender: [5000]
+      max_token_num_mixed_blender: [256, 512]
+      model_replicate_num: [1]
+
+  - id: router_paper_ablation
+    test_case: router
+    methods:
+      - mil_random_no_preemption
+      - mil_no_preemption
+      - mil
+      - mil_known_output_length
+      - min_random_no_preemption
+      - min_no_preemption
+      - min
+      - min_known_output_length
+    matrix:
+      reqnum: [10000]
+      router_replicate_num: [4]
+      router_question_version: [not_multiple_choice_question]
+      max_token_num: [4096]
+      specify_outlen: [false]
+
+  - id: mixed_paper_ablation
+    test_case: mixed
+    methods:
+      - mil_random_no_preemption
+      - mil_no_preemption
+      - mil
+      - mil_known_output_length
+      - min_random_no_preemption
+      - min_no_preemption
+      - min
+      - min_known_output_length
+    matrix:
+      reqnum: [500]
+      max_token_num: [900]
+      evaluator_num: [4]
+      summarize_model: [lmsys/vicuna-13b-v1.5]
+      evaluator_model: [meta-llama/Llama-2-70b-chat-hf]
+      reqnum_mixed_blender: [5000]
+      max_token_num_mixed_blender: [256]
+      model_replicate_num: [1]
+
+  - id: router_runtime_adjustment
+    test_case: router
+    methods: [mil]
+    control_parameters: {no_runtime_adjustment: false}
+    matrix:
+      reqnum: [10000]
+      router_replicate_num: [4]
+      router_question_version: [not_multiple_choice_question]
+      max_token_num: [4096]
+      specify_outlen: [false]
+      no_runtime_adjustment: [false, true]
+
+  - id: mixed_model_replication
+    test_case: mixed
+    methods: [mil, max, min, min_r, saturn_star, light_rule, light_rule_star, hybridflow, hybridflow_star]
+    matrix:
+      reqnum: [200]
+      max_token_num: [900]
+      evaluator_num: [4]
+      summarize_model: [lmsys/vicuna-13b-v1.5]
+      evaluator_model: [meta-llama/Llama-2-70b-chat-hf]
+      reqnum_mixed_blender: [5000]
+      max_token_num_mixed_blender: [256]
+      model_replicate_num: [1, 2, 4]

@@ -1,0 +1,40 @@
+schema_version: 1
+name: retained_zxcpu_resources
+description: CPU reconstruction from retained logs for two models; other entries are explicitly inherited from the frozen resources.
+cost:
+  base_table: benchmarks/get_my_cost_table_directly_zxcpu.py
+  compare_table: benchmarks/get_my_cost_table_directly_zxcpu.py
+  coefficient_table: benchmarks/model_coeff_database.py
+  entries:
+    - model: THUDM/chatglm3-6b
+      exec_plan: [1, 0.9, 2, 0]
+      log: benchmarks/Cost_Model_per_iter_zxcpu/NEWROUND_chatglm3-6b_tp1_1202_temp1.0_wldeg2_1.log
+    - model: THUDM/chatglm3-6b
+      exec_plan: [2, 0.9, 2, 0]
+      log: benchmarks/Cost_Model_per_iter_zxcpu/NEWROUND_chatglm3-6b_tp2_1202_temp1.0_wldeg2_1.log
+    - model: stabilityai/stablelm-tuned-alpha-7b
+      exec_plan: [1, 0.9, 2, 0]
+      log: benchmarks/Cost_Model_per_iter_zxcpu/NEWROUND_stablelm-tuned-alpha-7b_tp1_1202_temp1.0_wldeg2_1.log
+    - model: stabilityai/stablelm-tuned-alpha-7b
+      exec_plan: [2, 0.9, 2, 0]
+      log: benchmarks/Cost_Model_per_iter_zxcpu/NEWROUND_stablelm-tuned-alpha-7b_tp2_1202_temp1.0_wldeg2_1.log
+output_lengths:
+  base_distribution: benchmarks/collect_output_lengths/no_robot/out_len_sampler_2.py
+  compare_distribution: benchmarks/collect_output_lengths/no_robot/out_len_sampler_2.py
+  entries:
+    - model: THUDM/chatglm3-6b
+      log: benchmarks/collect_output_lengths/no_robot/NEWROUND_chatglm3-6b_tp2_1205_10kreq_1.log
+      max_model_len: 8193
+      num_prompts: 10000
+      expected_requests: 9907
+      temperature: 1.0
+      tensor_parallel_size: 2
+      dataset: no_robot.parquet
+    - model: stabilityai/stablelm-tuned-alpha-7b
+      log: benchmarks/collect_output_lengths/no_robot/NEWROUND_stablelm-tuned-alpha-7b_tp2_1205_10kreq_1.log
+      max_model_len: 4096
+      num_prompts: 10000
+      expected_requests: 9889
+      temperature: 1.0
+      tensor_parallel_size: 2
+      dataset: no_robot.parquet

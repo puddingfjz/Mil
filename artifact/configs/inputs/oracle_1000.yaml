@@ -1,0 +1,5 @@
+schema_version: 1
+application: llm_blender
+model_set: [project-baize/baize-v2-13b, TheBloke/koala-13B-HF, databricks/dolly-v2-12b]
+parameters: {reqnum: 1000, max_token_num: 256, oracle_model_num: 3, outlen_known: true}
+known_output_lengths: benchmarks/test_end2end_schedule/outlen_files/test_0123-llm-blender_maxlen_256_1000_oracleModelNum3Set2_ind0.json

@@ -1,0 +1,8 @@
+schema_version: 1
+kind: source_and_inputs
+experimental_results_included: false
+cpu_preparation_manifest: cpu_preparation.yaml
+scope: CPU and GPU source, running inputs and experiment instructions. No prior experimental outputs or measurement baselines.
+validation:
+  cpu: Source/input integrity, synthetic functional tests and explicit CPU scheduling usability checks.
+  gpu: GPU runtime and build paths are included; GPU execution is not certified by the CPU checks.

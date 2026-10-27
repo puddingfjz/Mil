@@ -1,0 +1,82 @@
+schema_version: 1
+status: configured
+protocol_id: camera_ready_reconstruction_v1
+scope: Execution, repetition, timing, failure, and aggregation rules for every Artifact
+  experiment profile.
+artifact_policy:
+  seed:
+    status: verified
+    parameter: seed
+    environment_variables:
+    - MIL_EXPERIMENT_SEED
+    - PYTHONHASHSEED
+    default: 0
+    seeded_rngs:
+    - Python random in the main, scheduling-search, and model processes
+    - NumPy in the main, scheduling-search, and model processes
+    - PyTorch in each model process
+    - workload sampling and output-length sampling
+    deterministic_gpu_algorithms: false
+    reason: Enabling deterministic GPU kernels could change the performance behavior
+      being measured.
+    distinctions:
+      ratio_seed: Controls only workload-ratio permutation.
+      test_id: Preserves the legacy output-file/round identifier and is not a random
+        seed.
+  repetition:
+    status: verified
+    rule: Every repetition is an explicit repeat or seed matrix value. The paper profile
+      expands three MIN-R seeds when the model count is at least eight; other tasks
+      have one explicit seed unless configured otherwise.
+    task_identity_parameter: repeat
+    automatic_hidden_repetitions: 0
+    seed_across_repetitions: The profile's explicit seed is reused unless a seed matrix
+      is declared.
+  warmup:
+    status: verified
+    explicit_warmup_iterations: 0
+    timing_scope: cold_start
+    measurement_boundary: The execution timer starts before model children initialize
+      and load their LLM objects.
+    interpretation: Reported execution time includes model initialization/loading
+      and first execution; it is not steady-state throughput.
+  failure_handling:
+    status: verified
+    max_attempts_per_invocation: 1
+    task_timeout:
+      profile_field: task_timeout_seconds
+      cli_override: --task-timeout-seconds
+      null_means: no automatic wall-clock termination
+      termination_scope: current task process group only
+      timeout_exit_code: 124
+      release_state: Supplied profiles and CPU scheduling entrypoints have no outer
+        wall-clock limit by default. Saturn retains its original per-MILP 300-second
+        limit.
+    retry: Manual resume reruns only invalid, failed, or incomplete tasks.
+    immutable_attempt_logs: true
+    success_requirements:
+    - process exit code is zero
+    - no traceback, assertion failure, or CUDA out-of-memory diagnostic is present
+    - execution, search, preparation, and reconstructed total timings are present
+      and valid
+    aggregation_inclusion: Only records classified as succeeded are eligible.
+  statistical_aggregation:
+    status: verified
+    coordinate_rule: Aggregate only records with identical workload, method, and fixed
+      parameters.
+    default: median
+    overrides:
+      paper_min_r:
+        center: mean
+        error_range: min_max
+        repetitions: 3
+        condition: model_count >= 8
+        source: artifact/configs/paper_experiments.yaml
+      min_r_scalability:
+        center: mean
+        error_range: min_max
+        source: artifact/configs/figures.yaml
+    forbidden_practices:
+    - selecting the fastest run after observing timings unless a released protocol
+      explicitly prespecifies that order statistic
+    - converting failed or missing measurements to zero

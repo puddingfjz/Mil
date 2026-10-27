@@ -1,0 +1,542 @@
+schema_version: 1
+name: retained_other_host_measurements
+description: Other/unrecorded-host profiles exported separately; never replace zxcpu
+  cost resources.
+cost:
+  base_table: benchmarks/get_my_cost_table_directly.py
+  coefficient_table: benchmarks/model_coeff_database.py
+  entries:
+  - model: chavinlo/alpaca-13b
+    exec_plan:
+    - 1
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_alpaca-13b_tp1_0728_temp1.0_wldeg2_1.log
+  - model: chavinlo/alpaca-13b
+    exec_plan:
+    - 2
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_alpaca-13b_tp2_0728_temp1.0_wldeg2_1.log
+  - model: project-baize/baize-v2-13b
+    exec_plan:
+    - 1
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_baize-v2-13b_tp1_0728_temp1.0_wldeg2_1.log
+  - model: project-baize/baize-v2-13b
+    exec_plan:
+    - 2
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_baize-v2-13b_tp2_0728_temp1.0_wldeg2_1.log
+  - model: databricks/dolly-v2-12b
+    exec_plan:
+    - 1
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_dolly-v2-12b_tp1_0728_temp1.0_wldeg2_1.log
+  - model: databricks/dolly-v2-12b
+    exec_plan:
+    - 2
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_dolly-v2-12b_tp2_0728_temp1.0_wldeg2_1.log
+  - model: TheBloke/koala-13B-HF
+    exec_plan:
+    - 1
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_koala-13B-HF_tp1_0728_temp1.0_wldeg2_1.log
+  - model: TheBloke/koala-13B-HF
+    exec_plan:
+    - 2
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_koala-13B-HF_tp2_0728_temp1.0_wldeg2_1.log
+  - model: mosaicml/mpt-7b-chat
+    exec_plan:
+    - 1
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_mpt-7b-chat_tp1_0728_temp1.0_wldeg2_1.log
+  - model: mosaicml/mpt-7b-chat
+    exec_plan:
+    - 2
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_mpt-7b-chat_tp2_0728_temp1.0_wldeg2_1.log
+  - model: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    exec_plan:
+    - 1
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_oasst-sft-4-pythia-12b-epoch-3.5_tp1_0728_temp1.0_wldeg2_1.log
+  - model: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    exec_plan:
+    - 2
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_oasst-sft-4-pythia-12b-epoch-3.5_tp2_0728_temp1.0_wldeg2_1.log
+  - model: lmsys/vicuna-13b-v1.5
+    exec_plan:
+    - 1
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_vicuna-13b-v1.5_tp1_0728_temp1.0_wldeg2_1.log
+  - model: lmsys/vicuna-13b-v1.5
+    exec_plan:
+    - 2
+    - 0.9
+    - 2
+    - 0
+    log: benchmarks/Cost_Model_per_iter/NEWROUND_vicuna-13b-v1.5_tp2_0728_temp1.0_wldeg2_1.log
+output_lengths:
+  base_distribution: benchmarks/collect_output_lengths/no_robot/out_len_sampler_2.py
+  compare_distribution: benchmarks/collect_output_lengths/no_robot/out_len_sampler_2.py
+  entries:
+  - model: WizardLMTeam/WizardLM-13B-V1.2
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_WizardLM-13B-V1.2_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: WizardLMTeam/WizardLM-13B-V1.2
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_WizardLM-13B-V1.2_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: WizardLMTeam/WizardLM-13B-V1.2
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_WizardLM-13B-V1.2_tp2_temp0.6_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.6
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: WizardLMTeam/WizardLM-13B-V1.2
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_WizardLM-13B-V1.2_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: chavinlo/alpaca-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_alpaca-13b_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: chavinlo/alpaca-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_alpaca-13b_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: chavinlo/alpaca-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_alpaca-13b_tp2_temp0.5_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.5
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: chavinlo/alpaca-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_alpaca-13b_tp2_temp0.6_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.6
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: chavinlo/alpaca-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_alpaca-13b_tp2_temp0.7_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.7
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: chavinlo/alpaca-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_alpaca-13b_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: project-baize/baize-v2-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_baize-v2-13b_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: project-baize/baize-v2-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_baize-v2-13b_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: project-baize/baize-v2-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_baize-v2-13b_tp2_temp0.5_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.5
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: project-baize/baize-v2-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_baize-v2-13b_tp2_temp0.6_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.6
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: project-baize/baize-v2-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_baize-v2-13b_tp2_temp0.7_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.7
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: project-baize/baize-v2-13b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_baize-v2-13b_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: THUDM/chatglm3-6b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_chatglm3-6b_tp2_1205_10kreq_1.log
+    max_model_len: 8193
+    num_prompts: 10000
+    expected_requests: 9907
+    temperature: 1.0
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: THUDM/chatglm3-6b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_chatglm3-6b_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 8192
+    num_prompts: 10000
+    expected_requests: 9907
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: databricks/dolly-v2-12b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_dolly-v2-12b_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: databricks/dolly-v2-12b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_dolly-v2-12b_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: databricks/dolly-v2-12b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_dolly-v2-12b_tp2_temp0.5_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.5
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: databricks/dolly-v2-12b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_dolly-v2-12b_tp2_temp0.6_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.6
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: databricks/dolly-v2-12b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_dolly-v2-12b_tp2_temp0.7_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.7
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: databricks/dolly-v2-12b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_dolly-v2-12b_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: TheBloke/koala-13B-HF
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_koala-13B-HF_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: TheBloke/koala-13B-HF
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_koala-13B-HF_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: TheBloke/koala-13B-HF
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_koala-13B-HF_tp2_temp0.5_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.5
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: TheBloke/koala-13B-HF
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_koala-13B-HF_tp2_temp0.6_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.6
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: TheBloke/koala-13B-HF
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_koala-13B-HF_tp2_temp0.7_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.7
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: TheBloke/koala-13B-HF
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_koala-13B-HF_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: mosaicml/mpt-7b-chat
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_mpt-7b-chat_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: mosaicml/mpt-7b-chat
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_mpt-7b-chat_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: mosaicml/mpt-7b-chat
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_mpt-7b-chat_tp2_temp0.5_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.5
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: mosaicml/mpt-7b-chat
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_mpt-7b-chat_tp2_temp0.6_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.6
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: mosaicml/mpt-7b-chat
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_mpt-7b-chat_tp2_temp0.7_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.7
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: mosaicml/mpt-7b-chat
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_mpt-7b-chat_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_oasst-sft-4-pythia-12b-epoch-3.5_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_oasst-sft-4-pythia-12b-epoch-3.5_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_oasst-sft-4-pythia-12b-epoch-3.5_tp2_temp0.5_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.5
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_oasst-sft-4-pythia-12b-epoch-3.5_tp2_temp0.6_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.6
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_oasst-sft-4-pythia-12b-epoch-3.5_tp2_temp0.7_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.7
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_oasst-sft-4-pythia-12b-epoch-3.5_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 2048
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: stabilityai/stablelm-tuned-alpha-7b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_stablelm-tuned-alpha-7b_tp2_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 1.0
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: stabilityai/stablelm-tuned-alpha-7b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_stablelm-tuned-alpha-7b_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: stabilityai/stablelm-tuned-alpha-7b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_stablelm-tuned-alpha-7b_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: stabilityai/stablelm-tuned-alpha-7b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_stablelm-tuned-alpha-7b_tp2_temp0.5_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.5
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: stabilityai/stablelm-tuned-alpha-7b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_stablelm-tuned-alpha-7b_tp2_temp0.6_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.6
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: stabilityai/stablelm-tuned-alpha-7b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_stablelm-tuned-alpha-7b_tp2_temp0.7_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.7
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: stabilityai/stablelm-tuned-alpha-7b
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_stablelm-tuned-alpha-7b_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9889
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: lmsys/vicuna-13b-v1.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_vicuna-13b-v1.5_tp2_temp0.2_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.2
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: lmsys/vicuna-13b-v1.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_vicuna-13b-v1.5_tp2_temp0.4_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.4
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: lmsys/vicuna-13b-v1.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_vicuna-13b-v1.5_tp2_temp0.5_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.5
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: lmsys/vicuna-13b-v1.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_vicuna-13b-v1.5_tp2_temp0.7_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.7
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet
+  - model: lmsys/vicuna-13b-v1.5
+    log: benchmarks/collect_output_lengths/no_robot/NEWROUND_vicuna-13b-v1.5_tp2_temp0.8_1205_10kreq_1.log
+    max_model_len: 4096
+    num_prompts: 10000
+    expected_requests: 9888
+    temperature: 0.8
+    tensor_parallel_size: 2
+    dataset: no_robot.parquet

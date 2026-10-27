@@ -1,0 +1,6 @@
+# Local backups and original measurements are not release assets.
+.git_ori/ export-ignore
+benchmarks/collect_output_lengths/no_robot_copy/ export-ignore
+benchmarks/collect_output_lengths/no_robot_zxcpu3_copy/ export-ignore
+artifact/evidence/ export-ignore
+artifact/results/ export-ignore

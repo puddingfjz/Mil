@@ -1,0 +1,8 @@
+# Artifact tooling dependencies only. See runtime-freeze.txt for the captured
+# GPU runtime package set and runtime.yaml for its provenance status.
+huggingface-hub==0.26.0
+PyYAML==6.0.2
+jsonschema==4.23.0
+matplotlib==3.9.4
+numpy==1.26.3
+pillow==11.3.0

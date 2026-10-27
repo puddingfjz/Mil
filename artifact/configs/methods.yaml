@@ -1,0 +1,218 @@
+schema_version: 1
+methods:
+  oracle:
+    paper_label: Oracle
+    mapping_status: source_verified
+    executable: true
+    args:
+      outlen_known: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: oracle
+    notes: Table 4 uses oracle_model_num=3 selecting Baize/Koala/Dolly and known output
+      lengths. No automatic outer search time limit.
+  mil_uniform_output:
+    paper_label: Mil (uniform output lengths)
+    mapping_status: source_verified
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn_LPT
+    notes: Table 3 Rand uses noise_level=-1 with uniform sampling from the legal length
+      interval; not the randomCost/no-preemption dispatcher.
+  legacy_ours:
+    paper_label: null
+    mapping_status: internal
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: ours
+    notes: Legacy method named ours; do not automatically label it Mil.
+  mil:
+    paper_label: Mil
+    mapping_status: provisional
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn_LPT
+    notes: Ensembling, Routing and Mixed use greedy_saturn_LPT. Chain Summary uses
+      mil_chain_summary.
+  mil_chain_summary:
+    paper_label: Mil
+    mapping_status: verified
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn
+    notes: Chain Summary uses greedy_saturn. Its results must not be pooled with the
+      LPT-backed Mil variant.
+  mil_chain_summary_legacy:
+    paper_label: null
+    mapping_status: internal_compatibility_alias
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn
+    notes: Compatibility alias for mil_chain_summary; new Artifact profiles use the
+      paper-facing name.
+  max:
+    paper_label: MAX
+    mapping_status: provisional
+    executable: true
+    legacy:
+      gen_execplans_baseline: max_gpu
+      search_method_baseline: ours
+  min:
+    paper_label: MIN
+    mapping_status: provisional
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: min_gpu_useAll
+  min_r:
+    paper_label: MIN-R
+    mapping_status: verified
+    executable: true
+    args:
+      sample_size: 8
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: min_gpu_useAll_sampleModels
+    notes: The Artifact exports the historical value explicitly for every MIN-R task;
+      it is recorded in task parameters and provenance but is not a legacy CLI flag.
+  saturn_star:
+    paper_label: Saturn*
+    mapping_status: provisional
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: saturnLP
+    solver:
+      backend: Gurobi via PuLP
+      candidate_pulp_version: 3.3.0
+      candidate_gurobipy_version: 12.0.2
+      timeout_seconds: 300
+      threads: all_detected_cpus
+      warm_start: true
+      integer_feasibility_tolerance: 1.0e-09
+      automatic_fallback: false
+    notes: The solver policy is fixed from source. Package versions are from the candidate
+      new_vllm environment and still need confirmation against the historical paper
+      runtime; a working Gurobi license is an external prerequisite.
+  light_rule:
+    paper_label: LightRule
+    mapping_status: provisional
+    executable: true
+    args:
+      noise_level: -2
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: LightRule
+    notes: Legacy code forces noise_level=-2; it is explicit here for provenance.
+  light_rule_star:
+    paper_label: LightRule*
+    mapping_status: provisional
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: LightRule_our_cost_model
+  hybridflow:
+    paper_label: HybridFlow
+    mapping_status: verified
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: hybridflow_model_parallel_old
+  hybridflow_star:
+    paper_label: HybridFlow*
+    mapping_status: verified
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: hybridflow_model_parallel
+  mil_no_preemption:
+    paper_label: Mil (no preemption)
+    mapping_status: provisional
+    executable: true
+    control_method: mil
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn_LPT_no_preemption
+  mil_lpt_no_preemption:
+    paper_label: Mil-LPT (no preemption)
+    mapping_status: internal_compatibility_alias
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn_LPT_no_preemption
+    notes: Compatibility alias for mil_no_preemption; new Artifact profiles use the
+      paper-facing name.
+  mil_non_lpt_no_preemption_legacy:
+    paper_label: null
+    mapping_status: internal_legacy
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn_no_preemption
+    notes: Early non-LPT variant retained for provenance; it is not the final ablation's
+      Mil variant.
+  mil_random_no_preemption:
+    paper_label: Mil (random cost + no preemption)
+    mapping_status: provisional
+    executable: true
+    control_method: mil
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn_LPT_no_preemption_randomCost
+  mil_known_output_length:
+    paper_label: Mil (known output length)
+    mapping_status: provisional
+    executable: true
+    control_method: mil
+    args:
+      outlen_known: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: greedy_saturn_LPT
+  min_no_preemption:
+    paper_label: MIN (no preemption)
+    mapping_status: provisional
+    executable: true
+    control_method: min
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: min_gpu_useAll_no_preemption
+  min_random_no_preemption:
+    paper_label: MIN (random cost + no preemption)
+    mapping_status: provisional
+    executable: true
+    control_method: min
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: min_gpu_useAll_no_preemption_randomCost
+  min_known_output_length:
+    paper_label: MIN (known output length)
+    mapping_status: provisional
+    executable: true
+    control_method: min
+    args:
+      outlen_known: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: min_gpu_useAll
+  light_rule_no_preemption:
+    paper_label: LightRule (no preemption)
+    mapping_status: internal
+    executable: true
+    args:
+      noise_level: -2
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: LightRule_no_preemption
+  saturn_star_no_preemption:
+    paper_label: Saturn* (no preemption)
+    mapping_status: internal
+    executable: true
+    legacy:
+      gen_execplans_baseline: ours
+      search_method_baseline: saturnLP_no_preemption

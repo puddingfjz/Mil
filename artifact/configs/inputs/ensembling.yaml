@@ -1,0 +1,3 @@
+schema_version: 1
+application: llm_blender
+parameters: {reqnum: 5000, max_token_num: 256}

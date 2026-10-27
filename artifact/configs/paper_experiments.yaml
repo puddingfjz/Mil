@@ -1,0 +1,187 @@
+schema_version: 1
+name: mil_paper_cpu_preparation
+paper_sha256: 7c554ef32ece500046e4999f898ca40904f3b3b7af489540e8cfd0f3c6a7c1d0
+gpu_execution: false
+defaults:
+  seed: 0
+  ratio_seed: 0
+  ratio_set: 1
+  max_group_seq_num: 1
+  top_k: 20
+  similar_threshold: 0.2
+  test_id: 0
+  noise_level: 0.0
+  oracle_model_num: -1
+  outlen_known: false
+  specify_outlen: false
+  no_runtime_adjustment: false
+methods: [mil, max, min, min_r, saturn_star, light_rule, light_rule_star, hybridflow, hybridflow_star]
+model_sets:
+  ensembling:
+    - lmsys/vicuna-13b-v1.5
+    - OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5
+    - chavinlo/alpaca-13b
+    - project-baize/baize-v2-13b
+    - TheBloke/koala-13B-HF
+    - databricks/dolly-v2-12b
+    - mosaicml/mpt-7b-chat
+    - THUDM/chatglm3-6b
+    - stabilityai/stablelm-tuned-alpha-7b
+  routing:
+    - meta-llama/Llama-2-70b-chat-hf
+    - mistralai/Mixtral-8x7B-Instruct-v0.1
+    - WizardLMTeam/WizardLM-13B-V1.2
+    - meta-llama/CodeLlama-34b-Instruct-hf
+    - mistralai/Mistral-7B-Instruct-v0.2
+  chain:
+    - lmsys/vicuna-13b-v1.5
+    - meta-llama/Llama-2-70b-chat-hf
+  oracle:
+    - project-baize/baize-v2-13b
+    - TheBloke/koala-13B-HF
+    - databricks/dolly-v2-12b
+workloads:
+  llm_blender:
+    test_case: general
+    model_set: ensembling
+    dataset: mixinstruct_prepared
+    fixed: {max_token_num: 256}
+  router:
+    test_case: router
+    model_set: routing
+    dataset: router_not_multiple_choice
+    fixed: {reqnum: 10000, max_token_num: 4096, router_question_version: not_multiple_choice_question}
+    actual_base_requests: 6856
+  chain_summary:
+    test_case: chain-summary
+    model_set: chain
+    dataset: [booookscore_all_books, booksum]
+    fixed: {evaluator_num: 4, max_token_num: 900, summarize_model: lmsys/vicuna-13b-v1.5, evaluator_model: meta-llama/Llama-2-70b-chat-hf}
+    mil_method: mil_chain_summary
+  mixed:
+    test_case: mixed
+    model_set: [chain, ensembling]
+    dataset: [booookscore_all_books, booksum, mixinstruct_prepared]
+    fixed: {evaluator_num: 4, max_token_num: 900, summarize_model: lmsys/vicuna-13b-v1.5, evaluator_model: meta-llama/Llama-2-70b-chat-hf, reqnum_mixed_blender: 5000, max_token_num_mixed_blender: 256, model_replicate_num: 1}
+items:
+  figure_6a:
+    kind: scheduling
+    workload: llm_blender
+    matrix: {reqnum: [1000, 2000, 5000, 10000]}
+    legacy_figure: llm_blender_256
+  figure_6b:
+    kind: scheduling
+    workload: router
+    matrix: {router_replicate_num: [1, 2, 3, 4], specify_outlen: [false]}
+    legacy_figure: router_unknown_output_length
+  figure_6c:
+    kind: scheduling
+    workload: router
+    matrix: {router_replicate_num: [1, 2, 3, 4], specify_outlen: [true]}
+    legacy_figure: router_known_output_length
+  figure_6d:
+    kind: scheduling
+    workload: chain_summary
+    matrix: {reqnum: [100, 200, 300, 400, 500]}
+    legacy_figure: chain_summary_requests
+  figure_6e:
+    kind: scheduling
+    workload: chain_summary
+    matrix: {reqnum: [300], evaluator_num: [2, 4, 8]}
+    legacy_figure: chain_summary_evaluators
+  figure_6f:
+    kind: scheduling
+    workload: chain_summary
+    matrix: {reqnum: [400], max_token_num: [100, 500, 900]}
+    legacy_figure: chain_summary_output_length
+  figure_7:
+    kind: scheduling
+    workload: mixed
+    matrix: {reqnum: [100, 200, 300, 400, 500]}
+    legacy_figure: mixed_summary_requests
+  figure_8:
+    kind: scheduling
+    workload: mixed
+    matrix: {reqnum: [200], model_replicate_num: [1, 2, 4]}
+    displayed_application_counts: [2, 4, 8]
+    legacy_figure: mixed_model_scalability
+  figure_9:
+    kind: execution_timeline
+    reuse: [figure_6b]
+    filter: {router_replicate_num: 1}
+  table_2:
+    kind: scheduling
+    methods: [mil, mil_no_preemption]
+    cases:
+      - {workload: llm_blender, parameters: {reqnum: 10000}}
+      - {workload: router, parameters: {router_replicate_num: 4, specify_outlen: false}}
+      - {workload: mixed, parameters: {reqnum: 500}}
+  table_3:
+    kind: scheduling
+    workload: llm_blender
+    methods: [mil]
+    matrix: {reqnum: [1000, 2000], max_token_num: [4096]}
+    variants:
+      - {label: Exact, parameters: {outlen_known: true}}
+      - {label: '0', parameters: {noise_level: 0.0}}
+      - {label: '1e-5', parameters: {noise_level: 0.00001}}
+      - {label: '1e-4', parameters: {noise_level: 0.0001}}
+      - {label: '1e-3', parameters: {noise_level: 0.001}}
+      - {label: '1e-2', parameters: {noise_level: 0.01}}
+      - {label: Rand, methods: [mil_uniform_output], parameters: {noise_level: -1.0}}
+  table_4:
+    kind: scheduling
+    workload: llm_blender
+    model_set: oracle
+    methods: [mil, oracle]
+    matrix: {reqnum: [1000, 2000], oracle_model_num: [3], max_token_num: [256]}
+    cpu_timeout_seconds: null
+  runtime_adjustment:
+    kind: runtime_comparison
+    reuse: [figure_6a, figure_6b, figure_6c, figure_6d, figure_6e, figure_6f, figure_7, figure_8]
+    methods: [mil]
+    matrix: {no_runtime_adjustment: [false, true]}
+    measurements: [inference, extra, end_to_end]
+  search_efficiency:
+    kind: search_statistics
+    reuse: [figure_6a, figure_6b, figure_6c, figure_6d, figure_6e, figure_6f, figure_7, figure_8]
+  estimation_error:
+    kind: prediction_error
+    reuse: [figure_6a, figure_6b, figure_6c, figure_6d, figure_6e, figure_6f, figure_7]
+    methods: [mil]
+  figure_3ab:
+    kind: output_distribution
+    models: [lmsys/vicuna-13b-v1.5]
+    datasets: [no_robot]
+    grouping: [input_length_bin, request_category]
+    num_prompts: 10000
+  figure_3c_jsd:
+    kind: output_distribution
+    models: [lmsys/vicuna-13b-v1.5, THUDM/chatglm3-6b, WizardLMTeam/WizardLM-13B-V1.2]
+    datasets: [no_robot, dolly, natural_questions, tldr, gsm8k, humaneval, mbpp, ShareGPT]
+    num_prompts: 10000
+    sampling_note: Retain actual post-filter/sample counts; do not invent oversampling for smaller datasets.
+  figure_3d:
+    kind: latency_profile
+    models: [NousResearch/Llama-2-7b-hf]
+    tensor_parallel_size: 1
+    phases: [compute, input_preparation, output_sampling]
+  figure_4:
+    kind: inference_trace_comparison
+    models: [lmsys/vicuna-13b-v1.5]
+    datasets: [ShareGPT]
+    num_prompts: 1000
+    metrics: [running_requests_by_iteration, predicted_time, measured_time, model_loading_time]
+  table_1:
+    kind: input_statistics
+    workload: router
+    expected_request_counts: [408, 1267, 2068, 456, 2657]
+protocol:
+  min_r: {condition: 'model_count >= 8', runs: 3, aggregation: mean, error_bars: min_max}
+  new_run_seeds: [0, 1, 2]
+  historical_seed_membership: unresolved_do_not_infer
+  other_methods_historical_aggregation: recover_per_coordinate
+  duplicate_coordinates: shared_task_ids
+extensions:
+  retained_profiles: [main, ablation, scalability, full]
+  retained_figures: [llm_blender_512, ablation_router_and_mixed, legacy_reference_point, legacy_reference_idle_ratio]

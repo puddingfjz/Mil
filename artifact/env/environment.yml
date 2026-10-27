@@ -1,0 +1,15 @@
+name: mil-artifact
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.9.20
+  - pip=24.2
+  - pip:
+      - huggingface-hub==0.26.0
+      - PyYAML==6.0.2
+      - jsonschema==4.23.0
+      - matplotlib==3.9.4
+      - numpy==1.26.3
+      - pillow==11.3.0

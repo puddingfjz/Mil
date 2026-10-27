@@ -1,0 +1,3 @@
+schema_version: 1
+application: chain_summary
+parameters: {reqnum: 100, evaluator_num: 4, max_token_num: 900}

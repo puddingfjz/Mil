@@ -1,0 +1,147 @@
+schema_version: 1
+kind: cpu_preparation
+scope: CPU correctness and usability; no claim of full search, solver or GPU performance
+  reproduction.
+source_contract: artifact/expected/cpu/source_contract.json
+source_contract_sha256: f71eacc3330558b04ed7972da89f32566ba93a2fa9b72f4e331b152d923458dd
+source_files: 193
+registered_methods: 24
+paper_matrix:
+  items: 20
+  settings: 72
+  expanded_tasks: 323
+paper_methods:
+- hybridflow
+- hybridflow_star
+- light_rule
+- light_rule_star
+- max
+- mil
+- mil_chain_summary
+- mil_no_preemption
+- mil_uniform_output
+- min
+- min_r
+- oracle
+- saturn_star
+frozen_request_sets: 7
+representative_cases:
+- ensemble/mil
+- routing/mil
+- chain/mil_chain_summary
+- mixed/mil
+- ensemble/max
+- routing/hybridflow_star
+- chain/light_rule_star
+- mixed/min
+runtime_event_cases: 6
+files_sha256:
+  artifact/configs/experiments/ablation.yaml: e9d8ccdd42220dddd0cb3ab70be63fdc52c494af3415f7cd67f50a29c660d70f
+  artifact/configs/experiments/full.yaml: 138c39d15ad65b74056e3e9459a04d1d05b7c585fa0c8388fa7c781dece7cb2f
+  artifact/configs/experiments/main.yaml: 61ad0fc811aceac9e61a77dee43b7ccd983eca3c5c4b11fa7e30c084621ce383
+  artifact/configs/experiments/paper.yaml: 7968dd6a5ddae3173c93f127e3f4296688b555779f352a9185f9ac56c2f3fe14
+  artifact/configs/experiments/reference.yaml: ba78138736b580f8ec5552d70ee632215fae3495d91dd89884e31ced3fb9fdce
+  artifact/configs/experiments/scalability.yaml: a6a7e0b66833da7ae84ad755ef47f510380a988ac7c87b2639363e1c6ea94924
+  artifact/configs/experiments/smoke.yaml: 878c5773ccdfd06de717ca5f79a4b9e89d013e2815928583baf82f22771ee7be
+  artifact/configs/figures.yaml: ae90289c9c06e2f1c25a29aecda7f795e7d685c8b83302bd154d9eb64b3b61b2
+  artifact/configs/hardware/a100_80gb_8gpu.yaml: adbd6185a17ad88e55ca19e278f3d72b23c460f836672f10dc6897237718236e
+  artifact/configs/inputs/chain.yaml: aeed95d9c794cacc29f6a4e108a02ef6d8205358c3cd133890bba4a522f5e1d1
+  artifact/configs/inputs/ensembling.yaml: 15efbea22f446253553b3663d6180100ea6fbe8c716aa25720529c8dee9ad33e
+  artifact/configs/inputs/ensembling_exact_1000.yaml: 17423670cbaeda95995b806c3c2f23a1029f827f12574ede7574dc1b2852a1eb
+  artifact/configs/inputs/ensembling_rand_1000.yaml: 06d4e03a913117957138c038ff169464e5c3185b7d3db109066521e5a59958a6
+  artifact/configs/inputs/mixed.yaml: 08596d87941fad882f814e2fec944fa703752163102a7ecce6560e6ffd55aa78
+  artifact/configs/inputs/oracle_1000.yaml: a05fb15e8c8ee9bf1845a38d170dd69aaad5beba00270bfa8b9c0f7f50bb92e0
+  artifact/configs/inputs/routing.yaml: 38410d5cbe75311257f0957b384d0f4b729f4f9d83f5f66ccc9df562c4719594
+  artifact/configs/methods.yaml: 28540e4e30382a7033fef27c26717110339c13b112ec7029e5d79034d9022183
+  artifact/configs/paper_experiments.yaml: 56b41fe8aaa4658a03a8e1e01b75bd6303c07165163d93de521423ae527d6580
+  artifact/configs/resources/additional_measurements.yaml: 8ed9ce987f71808f43dc7a22f460e56ad853fb6b957b2586073f17f8bd37e9cb
+  artifact/configs/resources/local_measurements.yaml: f8375f2c3f2016f6803f5e2fa7cfdf60c68ad7ab43069332c5633fee20a58a08
+  artifact/configs/resources/simulated.yaml: 0874e0d98ec614234c44abf54689b9d2f3fefcd6d06a0f8e625025e12ac2162d
+  artifact/configs/supporting_analyses.yaml: 0498b0f6deb7f69ce6ca884a9d597a1e7925aa2df6e155391731c2281481520f
+  artifact/cpu_bootstrap/sitecustomize.py: fbaa1c58031ff717c024e85c463088a5977146200cc11c7aad07879bfab87762
+  artifact/env/environment.yml: 451702717ebabf8bbe892637f7b6e23be6338f4267696f87ef35b6e6c2224d67
+  artifact/env/requirements-cpu.txt: 50fb3403ade7d76bb4c78961f5495c90edb1c67eaf8f8de05e9ac432329c8473
+  artifact/env/requirements-lock.txt: 78033d64050e042dff891e0c0ba94c8b538af78815867949900ec7e2e47fcdee
+  artifact/env/runtime-freeze.txt: 9de787060b01298661df0d6f0673a719b3d3fd5262e266559002895e44dc3561
+  artifact/env/runtime.yaml: ec66fd4e77c2c51587ab052d1378cb16f2c1ee41b265cc32f138477199c669a9
+  artifact/inputs/frozen/chain.json: 84928b6caa2d8edca50251f6273ddb3c6225ad71a37097c3db286bdfda3fd057
+  artifact/inputs/frozen/ensemble.json: c2efeee81e44a8f962d3fc30e116973812d450d0f65e5ff32c7707bb3090bf8b
+  artifact/inputs/frozen/exact.json: 2f6a83803aba5d650218ff8aa9afd10719a3f9b5a1da872f31feb2cc93ef1ad8
+  artifact/inputs/frozen/mixed.json: 05bb595d097245b0710ccb8429d84d4570434dbd6776044d507adc78919ca95b
+  artifact/inputs/frozen/oracle.json: 2ec67a679a89f1b00c7390e5fcb5fd3f40c7445d7f83372d5588a2f55de45429
+  artifact/inputs/frozen/rand.json: 291d202cb3ab1195986e069368e27d01267c17dae5fc9204c0c8362f77ac09c7
+  artifact/inputs/frozen/routing.json: a946be696cd7f73b00163045e909011f52560512cafbb8baa37500f339389f55
+  artifact/inputs/model_configurations.json: dd3f83912890b11a18a4949ea0c36bf5ffd6fc818005966097866088d9214469
+  artifact/mil_artifact/__init__.py: 94074b8f362fbf100bcde2deffa1808c8fdd076278173a486e1793ae3732c64e
+  artifact/mil_artifact/archive.py: 3f0f5be4394457bd6b7d792dce614681461a2d35cd38d5cd66d447dccb926ee8
+  artifact/mil_artifact/archive_enrich.py: c342a970a467b028e863549c7e29d069bbd941f784e2c76489dada23a7c4b5b9
+  artifact/mil_artifact/collect.py: 818147787f0194c95b8d0098edf5f78490e6b4c2abe1ee1611e2884d6f15becb
+  artifact/mil_artifact/compare_schedules.py: 010c54b58f96f4db9381e6d6239f9ceec1b5f43a2c1dceba8a59457ebed8ad65
+  artifact/mil_artifact/config.py: a3aadc7c6f27f86f767591b8b5ac8466263cb27129b7698572dd3e8be4a3120c
+  artifact/mil_artifact/cpu_batch.py: afe6694da4d08881534cfba358cfe722efc60583dfcfb2cb7dd6b2fe4dd56a3e
+  artifact/mil_artifact/cpu_guard.py: 36805308ae74a28ebac83f8c99504240685afa59fe7db4e5f6083dff6d110ee6
+  artifact/mil_artifact/cpu_models.py: 745167dd316970ec99537e3c4e06d94e9774a1cc2567bd0625e1d9ed0387758a
+  artifact/mil_artifact/cpu_reference.py: 5b1cabb03fdd49ec03f8e3e3b12a99bdac3829b031b513d78bf9287b31902ec7
+  artifact/mil_artifact/cpu_schedule.py: f7f855a1095176537d261a2477ba923e7a292508c6f7190e1252948d9da496af
+  artifact/mil_artifact/doctor.py: 56eb59e918808f0077d96e0d680477b0a991959cbe84beb62ae900caca4dc9df
+  artifact/mil_artifact/hashing.py: ee0514d63fc1abdd8f6ff0d8f0277811cc34d6e220e04f1df95f4ba06d7937c9
+  artifact/mil_artifact/history.py: c1a4f59f27b3e51f7797b547bf5f72d38a11dd16c9d09fcd97657cc5339d5232
+  artifact/mil_artifact/legacy_results.py: 828f0e527a6eb91a3e162851565a1d494b0f99cf771095a0d3a7d7e4f2ef0abf
+  artifact/mil_artifact/package.py: 2ef21780f2515452479076e9c4e9bb286b9572176017fa3a1031a29cdb47740d
+  artifact/mil_artifact/paper_results.py: 9278be2bd38a21ca49499cdc14d0b6d005b75d7e9460779abbd7918f91501316
+  artifact/mil_artifact/paper_suite.py: 62bdbde46ed59d82e4640fd66e477bda02fd00d9044f4487b5e29e45b8bcfbcb
+  artifact/mil_artifact/plot.py: bc5ebac5c43cd3495d227030586e080aebab8e04f943bdc9c96734afa420a368
+  artifact/mil_artifact/plot_entry.py: 3dd1a8c73ddeafb5db91b95158f12c036a1821acdcb4d0fa6504ce0b6bfb37e9
+  artifact/mil_artifact/prepare.py: 09220c28df3fc909eb094a354f702e7723dca272de626a03a0c1a3e77139090d
+  artifact/mil_artifact/provenance.py: f3823452b9e6bee2e6db0c2ccf5aa209157b4f63c57e47ae9f99769fbf2ef45c
+  artifact/mil_artifact/published_plot.py: 2e54780f5531e4959a839fa2827429c93d5021188a17b40711e2e34e81f7836e
+  artifact/mil_artifact/release.py: 0fd5dfce2b5183967f98ca2b5bd9787c9660f477f5858dcf712cddb50f3fd0df
+  artifact/mil_artifact/resource_build.py: 6c541e52953b6f56d9ce7a23ce55cbb823fe0a85daffd006b359a9e0f5afacb5
+  artifact/mil_artifact/resource_inventory.py: a6e397803f1e191d60050b29b0ba4c8ebfbec83432820232724eba22706e895c
+  artifact/mil_artifact/run.py: f3e264dac6995343241c476e76924b19c1ed8708040077135236bc8c7b0d5a0e
+  artifact/mil_artifact/runtime_events.py: 9a282e8f66ad2bd1b143dc672a2d3dc197f107511bc77e1fe45c4fe06b3db07e
+  artifact/mil_artifact/scheduling_replay.py: 73d3d71d728f7352f42874ccc82c44136291a5a53db0e7c145119ba0c84517f7
+  artifact/mil_artifact/schema.py: 5052bed67fb8e8a66012dcd09cf68192549b0715c919d03b52e51e699f1a166a
+  artifact/mil_artifact/source_contract.py: f398f38c79d248b2ac5886e473280a69ec7aec808877ff8563182f8aa4f0b8aa
+  artifact/mil_artifact/supporting_analyses.py: ab07a28ebaffa75698fed285e6bada6f94cd16dfa63da8fd60071b909298dc1d
+  artifact/mil_artifact/validate_cpu.py: 2c073120282f223b81520d2e507508f7b4878a10b9355a8f894086805363eedc
+  artifact/mil_artifact/verify.py: 0d77af226eae1bda150c4eeb9fa998f9cff9195dbe6f267ba7cb1f4dcaaa45cd
+  artifact/mil_artifact/verify_preparation.py: 55c0849469b2fcf0c822e6b60bf55fe40b79316f400a8841bf5ed541a31b820f
+  artifact/scripts/plot.sh: efcd4cc859672f706da409793fd78b9b6c113bef46a34934a9fc292ee00dc636
+  artifact/scripts/validate.sh: 357160167a540125c46ba0d3a2177cc17395f0999af2b2a5c0740c845778d5a9
+  artifact/tests/test_cpu_reference.py: 4d694c2b657258db6a9fb27d9b3ab78d6dfa4ccf698ed440ad211760d42de825
+  artifact/tests/test_environment.py: dac86a7bfbf5b46659d58e8086586aa449ad54ff8433b96abe1de8c999999445
+  artifact/tests/test_package.py: cf979d051df6818b0ce1b26249025b8cd9b3b3c83833febfebe635485cdd3389
+  artifact/tests/test_provenance.py: c64736c7a526831f24b06136625254886f35ccb87dd5a1901959c72bf6161bb0
+  artifact/tests/test_runtime_order.py: d5f61ea5632321423e958b42a751fd79896f41ca0b03fa47a7d709d7a1ab5158
+  artifact/tests/test_validate_cpu.py: e9d870fa98c1aad565fa763b70f5911ba982d3ba3bb1235c8063029e77419191
+  artifact/tests/test_cpu_schedule.py: 1f3733dc638b52eef0f2c165edca1e007d44c134a250ea461ac40e4e41429b77
+  artifact/tests/test_plot_entry.py: 43db731653cae4bcf792c5da71f70dd08285d51ca97e656b2bf259ea99c24776
+  artifact/mil_artifact/runtime_identity.py: 987b45ec514e7eb52b7b287f845695d0b5583b2783e9793662f1bf5fe3483123
+  artifact/tests/test_runtime_identity.py: ae0a2f932a0a13766adc0a69d5273a04186f5eedf32a9ad624027c48a36734e3
+  artifact/tests/test_doctor.py: e17b23fd7f925096a60d5010354a4d2fa3941468b9ebcd051c8360fef5f761de
+  artifact/env/Dockerfile: 5da06ef9ea256e8106d3888916685489f7ecd02d79dd37ce4d03a544a2f3ae99
+  artifact/mil_artifact/model_runtime.py: b98d51119342328fc10130a70d0c36b58c9a498aa44dd569e5427cc5c0585229
+  artifact/tests/test_model_runtime.py: d01fe713cb84ff2766f74de48ea2e96a4ea4cd36628a696965cbbbb1e4348e4b
+  artifact/tests/test_run.py: feb02d2d211d11c0d720ab54d3a66669915a58d0e48eb3f392548827d20573ae
+  artifact/tests/test_config.py: 02d5af9ef872411be7911c4c29376142db350f72818444a069d847b10033aca2
+  artifact/tests/test_verify.py: 804a9ac3aabbb46ae78b890473a912c7bd0614503789af8d4fa402c59e74c954
+  artifact/tests/synthetic.py: dd8369f44bfc95c8b1c637cc95f4d885dea9674e4c55aeddf8c4a291864c1e32
+resources:
+  cost_table:
+    path: benchmarks/get_my_cost_table_directly_zxcpu.py
+    sha256: b6ccd301bf9e8cc05be2702d6a3d54210cf7a26354e9ce46f4df854d45aaf2e6
+  output_lengths:
+    path: benchmarks/collect_output_lengths/no_robot/out_len_sampler_2.py
+    sha256: ae3b8ae27be79a56fa3e107b820166be83d1a89ec8bf972703f795f288b9e24d
+  model_configurations:
+    path: artifact/inputs/model_configurations.json
+    sha256: dd3f83912890b11a18a4949ea0c36bf5ffd6fc818005966097866088d9214469
+request_sets:
+- artifact/inputs/frozen/chain.json
+- artifact/inputs/frozen/ensemble.json
+- artifact/inputs/frozen/exact.json
+- artifact/inputs/frozen/mixed.json
+- artifact/inputs/frozen/oracle.json
+- artifact/inputs/frozen/rand.json
+- artifact/inputs/frozen/routing.json

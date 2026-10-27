@@ -1,0 +1,3 @@
+schema_version: 1
+application: router
+parameters: {reqnum: 10000, router_replicate_num: 1, max_token_num: 4096}

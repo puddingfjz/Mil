@@ -1,0 +1,58 @@
+schema_version: 1
+name: smoke
+description: Tiny pipeline validation; these settings are not paper measurements.
+provisional: true
+execution_ready: true
+validation_pending:
+  - The smoke baseline must still be measured on the target 8 x A100 80GB host.
+  - The target GPU topology and the rebuilt extension at the final Artifact commit remain to be validated.
+hardware: a100_80gb_8gpu
+execution_protocol: camera_ready_reconstruction_v1
+task_timeout_seconds: null
+defaults:
+  seed: 0
+  ratio_seed: 0
+  ratio_set: 1
+  max_group_seq_num: 1
+  top_k: 20
+  similar_threshold: 0.2
+  test_id: 0
+workloads:
+  - id: router
+    test_case: router
+    methods: [mil]
+    matrix:
+      reqnum: [5]
+      router_replicate_num: [1]
+      router_question_version: [not_multiple_choice_question]
+      max_token_num: [16]
+
+  - id: llm_blender
+    test_case: general
+    methods: [mil]
+    matrix:
+      reqnum: [5]
+      max_token_num: [16]
+
+  - id: chain_summary
+    test_case: chain-summary
+    methods: [mil_chain_summary]
+    matrix:
+      reqnum: [2]
+      max_token_num: [16]
+      evaluator_num: [1]
+      summarize_model: [lmsys/vicuna-13b-v1.5]
+      evaluator_model: [meta-llama/Llama-2-70b-chat-hf]
+
+  - id: mixed
+    test_case: mixed
+    methods: [mil]
+    matrix:
+      reqnum: [2]
+      max_token_num: [16]
+      evaluator_num: [1]
+      summarize_model: [lmsys/vicuna-13b-v1.5]
+      evaluator_model: [meta-llama/Llama-2-70b-chat-hf]
+      reqnum_mixed_blender: [5]
+      max_token_num_mixed_blender: [16]
+      model_replicate_num: [1]
