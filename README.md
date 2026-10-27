@@ -6,6 +6,18 @@ Mil schedules applications composed of multiple LLMs. This repository contains
 its scheduling and runtime implementation, experiment configurations, numeric
 inputs, resource-generation tools and plotting tools.
 
+## Paper and poster
+
+**Mil: Cost-guided Minimum Makespan Scheduling for Applications of Multiple LLMs**
+
+[Paper](https://github.com/puddingfjz/Mil/blob/main/technical_report/technical_report.pdf)
+· [DOI](https://doi.org/10.14778/3819518.3819522)
+· [Poster PDF](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pdf)
+· [Editable poster (PowerPoint)](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pptx)
+
+Publication materials are hosted on the `main` branch and are not bundled with
+the source-only release. A [poster preview](#poster) is available below.
+
 ## Getting started
 
 - [Mil artifact guide](artifact/README.md): experiments, validation and plotting.
@@ -49,6 +61,21 @@ execution, weight offloading, KV cache management and worker lifecycle.
 **Mil requires the modified vLLM sources in this repository.** CPU scheduling
 uses the local Python sources; GPU execution also requires the corresponding
 native extensions. Follow the [Mil environment instructions](artifact/env/README.md).
+
+## Poster
+
+<p align="center">
+  <a href="https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pdf">
+    <img
+      src="https://raw.githubusercontent.com/puddingfjz/Mil/main/assets/poster/Mil_VLDB_A1_Poster.png"
+      alt="Mil VLDB poster: Cost-guided Minimum Makespan Scheduling for Applications of Multiple LLMs"
+      width="900"
+    >
+  </a>
+</p>
+
+Click the poster to open the full-resolution PDF, or
+[download the editable PowerPoint](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pptx).
 
 ## Upstream attribution and license
 

@@ -7,6 +7,20 @@
 Mil 用于调度由多个 LLM 组成的应用。本仓库提供调度与运行时实现、实验配置、
 数字化输入、资源生成工具和绘图工具。
 
+<a id="paper-and-poster"></a>
+
+## 论文与海报
+
+**Mil: Cost-guided Minimum Makespan Scheduling for Applications of Multiple LLMs**
+
+[论文](https://github.com/puddingfjz/Mil/blob/main/technical_report/technical_report.pdf)
+· [DOI](https://doi.org/10.14778/3819518.3819522)
+· [海报 PDF](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pdf)
+· [可编辑海报（PowerPoint）](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pptx)
+
+论文与海报托管在 `main` 分支，不随仅含源码与运行输入的发布包分发。
+下方提供[海报预览](#poster)。
+
 <a id="getting-started"></a>
 
 ## 入门
@@ -51,6 +65,23 @@ artifact/
 
 **Mil 需要使用本仓库中的定制 vLLM 源码。** CPU 调度使用本地 Python 源码；
 GPU 执行还需要对应的原生扩展。安装步骤见 [Mil 环境说明](artifact/env/README.zh-CN.md)。
+
+<a id="poster"></a>
+
+## 海报
+
+<p align="center">
+  <a href="https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pdf">
+    <img
+      src="https://raw.githubusercontent.com/puddingfjz/Mil/main/assets/poster/Mil_VLDB_A1_Poster.png"
+      alt="Mil VLDB 海报：面向多 LLM 应用的成本引导最小完工时间调度"
+      width="900"
+    >
+  </a>
+</p>
+
+点击海报可打开完整分辨率的 PDF，也可
+[下载可编辑的 PowerPoint](https://github.com/puddingfjz/Mil/blob/main/assets/poster/Mil_VLDB_A1_Poster.pptx)。
 
 <a id="upstream-attribution-and-license"></a>
 
